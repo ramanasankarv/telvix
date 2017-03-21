@@ -650,3 +650,5 @@ body {
       border-radius:10px;
    }  
 }
+
+input[type="text"].error,input[type="password"].error{border: 1px solid red !important;}

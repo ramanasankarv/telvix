@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="login-bg">
+  	<div class="header">
+	     <div class="container" style="width:100%">
+	        <div class="row">
+	           <div class="col-md-5">
+	              <!-- Logo -->
+	              <div class="logo">
+	                 <a href="index.html"><img src="images/logo.png" height="40px" style="margin-top: 6px;"></a>
+	              </div>
+	           </div>
+	           
+	        </div>
+	     </div>
+	</div>
+
+	<div class="page-content container">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="login-wrapper">
+			        <div class="box">
+			            <div class="content-wrap">
+			                <h6>Sign In</h6>
+			                
+			                <input class="form-control" id="userid" type="text" placeholder="User Id">
+			                <input class="form-control" id="password" type="password" placeholder="Password">
+			                <div class="action">
+			                    <a class="btn btn-primary signup" href="#" onclick="login()">Login</a>
+			                </div>                
+			            </div>
+			        </div>
+
+			    </div>
+			</div>
+		</div>
+	</div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+    function login(){
+    	var error=false;
+    	var userid=$('#userid').val();
+    	var password=$('#password').val();
+    	if(userid==""){
+    		error=true;
+    		$('#userid').addClass('error');
+    	}
+    	if(password==""){
+    		error=true;
+    		$('#password').addClass('error');
+    	}
+    	if(!error){
+    		$.ajax({
+           		type: "POST",
+           		url: "/api.php",
+           		data: {
+        			userid: userid,
+        			password: password,
+        			page: 'login'
+    			},
+           		dataType: "json",
+           		success: function (msg) {
+           			console.log(msg);
+           			if(msg.code==-2){
+           				alert("Wrong User ID or Password");
+           			}
+           			else if(msg.code==-1){
+           				alert("parameter error");
+           			}
+           			else if(msg.code==-3){
+           				alert("User ID Time Expired");
+           			}else{
+           				location.href="index.php";
+           			}
+	            }
+
+           		
+       		});
+    		
+    	}	
+    }
+    </script>
+  </body>
+</html>
