@@ -197,7 +197,7 @@ else{
 
 			$.ajax({
 	        	type: "POST",
-	           	url: "/api.php",
+	           	url: "api.php",
 	           	data: {
 	        		page: 'systeminfo'
 	    		},
