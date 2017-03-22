@@ -2,6 +2,10 @@
 $szezserverip="5.9.101.139";
 $szAPIport="18000";
 $page=$_POST['page'];
+
+
+
+
 if($page=="login"){
 	$szuserid=$_POST["userid"];
 	$szpassword=$_POST["password"];
@@ -20,6 +24,28 @@ if($page=="login"){
 		$result["status"]="fail";
 	}
 	echo json_encode($result);
+}else{
+	if($_SESSION["token"]!=""){
+		if($page=="logout"){
+			$apiurl=vsprintf("http://%s:%s/token/destroytoken?token=%s",array($szezserverip,$szAPIport,$_SESSION["token"]));
+			$szuptime = file_get_contents($apiurl);
+			$result["code"]=200;
+			$result["status"]="success";
+			echo json_encode($result);
+		}
+		else if($page=="systeminfo"){
+			$apiurl=vsprintf("http://%s:%s/server/system_info_inquery?token=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["token"],'sdfdf'));
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			echo json_encode($response);
+		}	
+	}
+	else{
+		$result["code"]=400;
+		$result["status"]="login";
+		echo json_encode($result);
+	}	
 }
 
 // New User Profile
