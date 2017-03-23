@@ -11,7 +11,7 @@ else{
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap Admin Theme v3</title>
+    <title>Telvix TV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,66 +26,55 @@ else{
     <![endif]-->
   </head>
   <body>
-  	<div class="header">
-	     <div class="container" style="width:100%">
-	        <div class="row">
-	           <div class="col-md-5">
-	              <!-- Logo -->
-	              <div class="logo">
-	                  <h1><a href="index.php">Telvix TV</a></h1>
-	                 
-	              </div>
-	           </div>
-	           
-	        </div>
-	     </div>
-	</div>
+  	<? include('includes/header.php');?>
 
     <div class="page-content">
     	<div class="row">
-		  <div class="col-md-2" id="divmenu">
-		  	
-		  </div>
-		  <div class="col-md-10">
-		  	
-		  	<div class="row">
-		  		<div class="col-md-12 panel-warning">
-		  			<div class="content-box-header panel-heading">
-	  					<div class="panel-title ">Bandwidth</div>
-		  			</div>
-		  			<div class="content-box-large box-with-header">
-		  				<div id="chartContainer" style="height: 300px; width: 100%;">
-			  			</div>
-					</div>
-		  		</div>
+		  	<div class="col-md-3" id="divmenu">
+		  		<? include('includes/menu.php');?>
 		  	</div>
-		  	<div class="row">
-		  		<div class="col-md-4 panel-warning">
-		  			<div class="content-box-header panel-heading">
-	  					<div class="panel-title ">Memory</div>
-		  			</div>
-		  			<div class="content-box-large box-with-header">
-		  				<div class="js-gauge js-gauge--1 gauge"></div>
-		  			</div>
-		  		</div>
-				<div class="col-md-4 panel-warning">
-					<div class="content-box-header panel-heading">
-	  					<div class="panel-title ">Disk Usage</div>
-		  			</div>
-		  			<div class="content-box-large box-with-header">
-		  				<div class="js-gauge js-gauge--2 gauge"></div>
-		  			</div>
-		  		</div>
-		  		<div class="col-md-4  panel-warning">
-		  			<div class="content-box-header panel-heading">
-	  					<div class="panel-title ">Load</div>
-		  			</div>
-		  			<div class="content-box-large box-with-header">
-		  				<div class="js-gauge js-gauge--3 gauge"></div>
-		  			</div>
-		  		</div>	  	
-		  </div>
-		</div>
+		  	
+		  	<div class="col-md-9">
+		  	
+			  	<div class="row">
+			  		<div class="col-md-12 panel-warning">
+			  			<div class="content-box-header panel-heading">
+		  					<div class="panel-title ">Bandwidth</div>
+			  			</div>
+			  			<div class="content-box-large box-with-header">
+			  				<div id="chartContainer" style="height: 300px; width: 100%;">
+				  			</div>
+						</div>
+			  		</div>
+			  	</div>
+			  	<div class="row">
+			  		<div class="col-md-4 panel-warning">
+			  			<div class="content-box-header panel-heading">
+		  					<div class="panel-title ">Memory</div>
+			  			</div>
+			  			<div class="content-box-large box-with-header">
+			  				<div class="js-gauge js-gauge--1 gauge"></div>
+			  			</div>
+			  		</div>
+					<div class="col-md-4 panel-warning">
+						<div class="content-box-header panel-heading">
+		  					<div class="panel-title ">Disk Usage</div>
+			  			</div>
+			  			<div class="content-box-large box-with-header">
+			  				<div class="js-gauge js-gauge--2 gauge"></div>
+			  			</div>
+			  		</div>
+			  		<div class="col-md-4  panel-warning">
+			  			<div class="content-box-header panel-heading">
+		  					<div class="panel-title ">Load</div>
+			  			</div>
+			  			<div class="content-box-large box-with-header">
+			  				<div class="js-gauge js-gauge--3 gauge"></div>
+			  			</div>
+			  		</div>	  	
+			  	</div>
+			</div>
+    	</div>
     </div>
 
     <footer id="divfooter">
