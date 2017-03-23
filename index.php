@@ -1,4 +1,4 @@
-<?session_start();
+<?php session_start();
 if(isset($_SESSION["token"])){
 	if($_SESSION["token"]<0){
 		header('Location: login.html');
@@ -26,12 +26,12 @@ else{
     <![endif]-->
   </head>
   <body>
-  	<? include('includes/header.php');?>
+  	<?php include('includes/header.php');?>
 
     <div class="page-content">
     	<div class="row">
 		  	<div class="col-md-3" id="divmenu">
-		  		<? include('includes/menu.php');?>
+		  		<?php include('includes/menu.php');?>
 		  	</div>
 		  	
 		  	<div class="col-md-9">

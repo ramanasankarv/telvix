@@ -1,4 +1,4 @@
-<?session_start();
+<?php session_start();
 $szezserverip="5.9.101.139";
 $szAPIport="18000";
 $page=$_POST['page'];
