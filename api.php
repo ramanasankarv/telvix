@@ -14,7 +14,7 @@ if($page=="login"){
 	// Web API: createtokenbased64 
 	$apiurl=vsprintf("http://%s:%s/token/createtokenbased64?encrpty=%s",array($szezserverip,$szAPIport,$strenc));
 	$szreponse = file_get_contents($apiurl);
-	$sztoken=substr($szreponse,6,strlen($sztoken)-2);
+	$sztoken=substr($szreponse,6,strlen($szreponse)-2);
 	if($sztoken>0){
 		$_SESSION["token"]=$sztoken;
 		$result["code"]=200;
