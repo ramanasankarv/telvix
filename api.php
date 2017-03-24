@@ -4,8 +4,6 @@ $szAPIport="18000";
 $page=$_POST['page'];
 
 
-
-
 if($page=="login"){
 	$szuserid=$_POST["userid"];
 	$szpassword=$_POST["password"];
@@ -13,6 +11,8 @@ if($page=="login"){
 	$strenc=base64_encode($str);
 	// Web API: createtokenbased64 
 	$apiurl=vsprintf("http://%s:%s/token/createtokenbased64?encrpty=%s",array($szezserverip,$szAPIport,$strenc));
+
+	echo $apiurl;
 	$szreponse = file_get_contents($apiurl);
 	$sztoken=substr($szreponse,6,strlen($szreponse)-2);
 	if($sztoken>0){
@@ -48,20 +48,4 @@ if($page=="login"){
 	}	
 }
 
-// New User Profile
-$szUsername="root";
-$szPassoword="123456";
-$szGroupName="basic";
-$szExpiredTime="12/30/2019";
-
-// Get token
-$sztoken=substr($szreponse,6,strlen($sztoken)-2);
-// Web API: add_user with token
-$apiurl=vsprintf("http://%s:%s/server/add_user?token=%s&username=%s&password=%s&group=%s&expired_time=%s",array($szezserverip,$szAPIport,$sztoken,
-$szUsername,$szPassoword,$szGroupName,$szExpiredTime));
-$szuptime = file_get_contents($apiurl);
-echo $szuptime;
-// Web API: destroytoken with token
-$apiurl=vsprintf("http://%s:%s/token/destroytoken?token=%s",array($szezserverip,$szAPIport,$sztoken));
-$szuptime = file_get_contents($apiurl);
 ?>
