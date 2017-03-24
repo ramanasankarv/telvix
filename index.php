@@ -7,6 +7,7 @@ if(isset($_SESSION["token"])){
 else{
 	header('Location: login.html');
 }
+$page="index";
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,8 +25,8 @@ else{
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
+</head>
+<body>
   	<?php include('includes/header.php');?>
 
     <div class="page-content">
@@ -38,15 +39,66 @@ else{
 		  	
 			  	<div class="row">
 			  		<div class="col-md-12 panel-warning">
-			  			<div class="content-box-header panel-heading">
-		  					<div class="panel-title ">Bandwidth</div>
-			  			</div>
-			  			<div class="content-box-large box-with-header">
-			  				<div id="chartContainer" style="height: 300px; width: 100%;">
-				  			</div>
+			  			
+			  			<div class="content-box-large">
+			  				<div class="row">
+			  					<div class="info" style="padding: 5px 20px; width: 45%;float:left;">
+			  						<div class="icon" style="float: left; margin-right: 10px;">
+			  							<img src="icon.png">
+			  						</div>
+			  						<div class="panel-title" style="font-size: 22px;" id="groupdiv">Groups : <span></span></div>
+
+			  					</div>
+
+			  					<div class="info" style="padding: 5px 10px; width: 45%;float:right;">
+			  						<div class="icon" style="float: left; margin-right: 10px;">
+			  							<img src="channels.png">
+			  						</div>
+			  						<div class="panel-title" style="font-size: 22px;" id="channeldiv">Channels : <span></span></div>
+
+			  					</div>
+			  				</div>
+
+			  				<div class="row">
+			  					<div class="info" style="padding: 5px 20px; width: 45%;float:left;">
+			  						<div class="icon" style="float: left; margin-right: 10px;">
+			  							<img src="icon.png">
+			  						</div>
+			  						<div class="panel-title" style="font-size: 22px;" id="subscridiv">Subscribers : <span></span></div>
+
+			  					</div>
+
+			  					<div class="info" style="padding: 5px 10px; width: 45%;float:right;">
+			  						<div class="icon" style="float: left; margin-right: 10px;">
+			  							<img src="channels.png">
+			  						</div>
+			  						<div class="panel-title" style="font-size: 22px;" id="activediv">Active Channels : <span></span></div>
+
+			  					</div>
+			  				</div>
+
+			  				<div class="row">
+			  					<div class="info" style="padding: 5px 20px; width: 45%;float:left;">
+			  						<div class="icon" style="float: left; margin-right: 10px;">
+			  							<img src="icon.png">
+			  						</div>
+			  						<div class="panel-title" style="font-size: 22px;" id="streamingdiv">Live Streaming : <b></b></div>
+
+			  					</div>
+
+			  					<div class="info" style="padding: 5px 10px; width: 45%;float:right;">
+			  						<div class="icon" style="float: left; margin-right: 10px;">
+			  							<img src="movie.png" width='30px'>
+			  						</div>
+			  						<div class="panel-title" style="font-size: 22px;" id="moviesdiv">Movies : <span></span></div>
+
+			  					</div>
+			  				</div>
+			  				
 						</div>
 			  		</div>
 			  	</div>
+
 			  	<div class="row">
 			  		<div class="col-md-4 panel-warning">
 			  			<div class="content-box-header panel-heading">
@@ -73,21 +125,32 @@ else{
 			  			</div>
 			  		</div>	  	
 			  	</div>
+
+			  	<div class="row">
+			  		<div class="col-md-12 panel-warning">
+			  			<div class="content-box-header panel-heading">
+		  					<div class="panel-title ">Bandwidth</div>
+			  			</div>
+			  			<div class="content-box-large box-with-header">
+			  				<div id="chartContainer" style="height: 300px; width: 100%;">
+				  			</div>
+						</div>
+			  		</div>
+			  	</div>
+			  	
 			</div>
     	</div>
     </div>
 
-    <footer id="divfooter">
-         
-    </footer>
+    <?php include('includes/footer.php');?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-    <script type="text/javascript" src="js/header.js"></script>
-    <script type="text/javascript" src="js/footer.js"></script>
+    
+   
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
 	<script type="text/javascript" src="js/kuma-gauge.jquery.js"></script>
@@ -236,6 +299,22 @@ else{
 	           				$('.js-gauge--3').kumaGauge('update',{
 								value : load
 							});	
+						}else if(msg[i].search("Groups: <b>")==0){
+							$("#groupdiv").html(msg[i]);
+						}
+						else if(msg[i].search("Subscribers: <b>")==0){
+							$("#subscridiv").html(msg[i]);
+						}else if(msg[i].search("Streaming Connections: <b>")==0){
+							var res = msg[i].replace("Streaming Connections: <b>", "");
+	           				var temp = res.replace("</b>", "");
+	           				
+							$("#streamingdiv b").html(temp);
+						}else if(msg[i].search("Active Channels: <b>")==0){
+							$("#activediv").html(msg[i]);
+						}else if(msg[i].search("Channels: <b>")==0){
+							$("#channeldiv").html(msg[i]);
+						}else if(msg[i].search("Movies: <b>")==0){
+							$("#moviesdiv").html(msg[i]);
 						}
 	           		}
 	           		// updating legend text with  updated with y Value 
@@ -260,10 +339,6 @@ else{
 	}
 	</script>
 	<script type="text/javascript" src="js/canvasjs.min.js"></script>
-
-	
-				
-				
-    
-  </body>
+  
+</body>
 </html>

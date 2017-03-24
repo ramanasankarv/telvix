@@ -1,7 +1,15 @@
+
 <div class='sidebar content-box' style='display: block;'>
 	<ul class='nav'>
-		<li class='current'><a href='index.html'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>
-		<li class='submenu'>
+		<?php if($page=="index")
+			echo "<li class='current'><a href='index.html'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>";
+			else
+				echo "<li><a href='index.html'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>";
+		if($page == "channel" || $page=="group")
+			echo "<li class='submenu current open'>";
+		else
+			echo "<li class='submenu'>";
+		?>
 			<a href='#'><i class='glyphicon glyphicon-list'></i> Channel<span class='caret pull-right'></span></a>
 			<ul>
 				<li><a href='channel.php'>Manage Channel</a></li>

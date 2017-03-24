@@ -3,7 +3,6 @@ $szezserverip="5.9.101.139";
 $szAPIport="18000";
 $page=$_POST['page'];
 //$szezserverip="192.168.1.135";
-http://5.9.101.139:18000/server/system_info_inquery?token=0.115181%2C1.741771&flag=0.7183362589909679
 if($page=="login"){
 	$szuserid=$_POST["userid"];
 	$szpassword=$_POST["password"];
