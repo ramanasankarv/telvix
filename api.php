@@ -2,8 +2,8 @@
 $szezserverip="5.9.101.139";
 $szAPIport="18000";
 $page=$_POST['page'];
-
-
+//$szezserverip="192.168.1.135";
+http://5.9.101.139:18000/server/system_info_inquery?token=0.115181%2C1.741771&flag=0.7183362589909679
 if($page=="login"){
 	$szuserid=$_POST["userid"];
 	$szpassword=$_POST["password"];
@@ -12,17 +12,19 @@ if($page=="login"){
 	// Web API: createtokenbased64 
 	$apiurl=vsprintf("http://%s:%s/token/createtokenbased64?encrpty=%s",array($szezserverip,$szAPIport,$strenc));
 
-	echo $apiurl;
+	//echo $apiurl;
 	$szreponse = file_get_contents($apiurl);
 	$sztoken=substr($szreponse,6,strlen($szreponse)-2);
 	if($sztoken>0){
-		$_SESSION["token"]=$sztoken;
+		$_SESSION["token"]=urlencode(str_replace("\r\n", "", $sztoken));
 		$result["code"]=200;
 		$result["status"]="success";
+		$result["status"]=$_SESSION["token"];
 	}else{
 		$result["code"]=$sztoken;
 		$result["status"]="fail";
 	}
+	
 	echo json_encode($result);
 }else{
 	if($_SESSION["token"]!=""){
