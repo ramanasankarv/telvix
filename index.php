@@ -105,7 +105,11 @@ $page="index";
 		  					<div class="panel-title ">Memory</div>
 			  			</div>
 			  			<div class="content-box-large box-with-header">
-			  				<div class="js-gauge js-gauge--1 gauge"></div>
+			  				
+			  				<div id="gauge-container">
+                				<div id="gauge1"></div>
+            				</div>
+            				
 			  			</div>
 			  		</div>
 					<div class="col-md-4 panel-warning">
@@ -113,7 +117,9 @@ $page="index";
 		  					<div class="panel-title ">Disk Usage</div>
 			  			</div>
 			  			<div class="content-box-large box-with-header">
-			  				<div class="js-gauge js-gauge--2 gauge"></div>
+			  				<div id="gauge-container">
+                				<div id="gauge2"></div>
+            				</div>
 			  			</div>
 			  		</div>
 			  		<div class="col-md-4  panel-warning">
@@ -121,7 +127,9 @@ $page="index";
 		  					<div class="panel-title ">Load</div>
 			  			</div>
 			  			<div class="content-box-large box-with-header">
-			  				<div class="js-gauge js-gauge--3 gauge"></div>
+			  				<div id="gauge-container">
+                				<div id="gauge3"></div>
+            				</div>
 			  			</div>
 			  		</div>	  	
 			  	</div>
@@ -150,10 +158,13 @@ $page="index";
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
     
-   
+   	<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.bootstrap.mobile.min.css" />
 
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
-	<script type="text/javascript" src="js/kuma-gauge.jquery.js"></script>
+	
+	<script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+
     <script type="text/javascript">
     	
 	window.onload = function () {
@@ -164,18 +175,18 @@ $page="index";
 		var memory=0;	
 		var diskusage=0;
 		var load=0;	
+		var i=0;
+		// $('.js-gauge--1').kumaGauge({
+		// 	value : Math.floor((Math.random() * 99) + 1)
+		// });
 
-		$('.js-gauge--1').kumaGauge({
-			value : Math.floor((Math.random() * 99) + 1)
-		});
-
-		$('.js-gauge--2').kumaGauge({
-			value : Math.floor((Math.random() * 99) + 1)
-		});
+		// $('.js-gauge--2').kumaGauge({
+		// 	value : Math.floor((Math.random() * 99) + 1)
+		// });
 		
-		$('.js-gauge--3').kumaGauge({
-			value : Math.floor((Math.random() * 99) + 1)
-		});
+		// $('.js-gauge--3').kumaGauge({
+		// 	value : Math.floor((Math.random() * 99) + 1)
+		// });
 
 		var chart = new CanvasJS.Chart("chartContainer",{
 			zoomEnabled: true,
@@ -245,6 +256,41 @@ $page="index";
 		// time.setMilliseconds(00);
 		// // starting at 9.30 am
 
+		function createGauge(id,value,labelPosition) {
+                    
+                    $("#"+id).kendoRadialGauge({
+
+                        pointer: {
+                            value: value
+                        },
+
+                        scale: {
+                            minorUnit: 5,
+                            startAngle: -30,
+                            endAngle: 210,
+                            max: 100,
+                            labels: {
+                                position: labelPosition || "outside"
+                            },
+                            ranges: [
+                                {
+                                    from: 50,
+                                    to: 70,
+                                    color: "#ffc700"
+                                }, {
+                                    from: 70,
+                                    to: 90,
+                                    color: "#ff7a00"
+                                }, {
+                                    from: 90,
+                                    to: 100,
+                                    color: "#c20000"
+                                }
+                            ]
+                        }
+                    });
+                }
+                
 		var updateChart = function (count) {
 
 			$.ajax({
@@ -282,23 +328,26 @@ $page="index";
 	           				var temp1= temp.split("/");
 	           				var usememory= parseFloat(temp1[0]) - parseFloat(temp1[1]);
 	           				memory = parseInt((parseFloat(usememory)/parseFloat(temp1[0]))* 100);
-	           				$('.js-gauge--1').kumaGauge('update',{
-								value : memory
-							});	
+	           				createGauge("gauge1",memory);
+	      //      				$('.js-gauge--1').kumaGauge('update',{
+							// 	value : memory
+							// });	
 						}else if(msg[i].search("Disk Use: <b>")==0){
 							var res = msg[i].replace("Disk Use: <b>", "");
 	           				var temp = res.replace("%</b>", "");
 	           				diskusage=	temp;
-	           				$('.js-gauge--2').kumaGauge('update',{
-								value : diskusage
-							});
+	           				createGauge("gauge2",diskusage);
+	      //      				$('.js-gauge--2').kumaGauge('update',{
+							// 	value : diskusage
+							// });
 						}else if(msg[i].search("Load Average: <b>")==0){
 							var res = msg[i].replace("Load Average: <b>", "");
 	           				var temp = res.replace("</b>", "");
 	           				load=	temp;
-	           				$('.js-gauge--3').kumaGauge('update',{
-								value : load
-							});	
+	           				createGauge("gauge3",load);
+	      //      				$('.js-gauge--3').kumaGauge('update',{
+							// 	value : load
+							// });	
 						}else if(msg[i].search("Groups: <b>")==0){
 							$("#groupdiv").html(msg[i]);
 						}
