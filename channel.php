@@ -18,7 +18,7 @@ $page="channel";
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="css/styles.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="css/dataTables.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,11 +42,14 @@ $page="channel";
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>First name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>Start Date</th>
-                    <th style="background-image: none">Edit</th>
+                    <th>Name</th>
+                    <th>Src</th>
+                    <th>Icon</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Bitrate</th>
+                    <th style="background-image: none;width:100px;">Edit</th>
                   </tr>
                 </thead>
               </table>
@@ -66,28 +69,59 @@ $page="channel";
           <form class="form-horizontal" id="add-form">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="add-modal-label">Add new row</h4>
+              <h4 class="modal-title" id="add-modal-label">Add new Channel</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                <label for="add-firstname" class="col-sm-2 control-label">Firstname</label>
+                <label for="add-firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-firstname" name="firstname" placeholder="Firstname" required>
+                    <input type="text" class="form-control" id="add-name" name="name" placeholder="name" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-email" class="col-sm-2 control-label">E-mail</label>
+                <label for="add-email" class="col-sm-2 control-label">Src</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="add-email" name="email" placeholder="E-mail address" required>
+                    <input type="text" class="form-control" id="add-src" name="src" placeholder="Src" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Mobile</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Icon</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-mobile" name="mobile" placeholder="Mobile" required>
+                    <input type="text" class="form-control" id="add-icon" name="icon" placeholder="Icon" required>
                 </div>
               </div>
-            </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="add-category" name="category" placeholder="Category" required>
+                </div>
+              </div>
+            
+            <div class="form-group">
+                <label for="add-type" class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="add-type" name="type">
+                      <option value="live">live</option>
+                      <option value="delay">delay</option>
+                      <option value="dvr">dvr</option>
+                      <option value="inactive">inactive</option>
+                    </select>
+                    
+                </div>
+              </div>
+            
+
+            <div class="form-group">
+                <label for="add-status" class="col-sm-2 control-label">Status</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="add-status" name="status" placeholder="status" required>
+                </div>
+              </div>
+            
+
+            
+            
+
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Save changes</button>
@@ -141,5 +175,74 @@ $page="channel";
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" class="init">
+      $(document).ready(function() {
+
+        // ATW
+        if ( top.location.href != location.href ) top.location.href = location.href;
+
+        // Initialize datatable
+        $('#example').dataTable({
+          "aProcessing": true,
+          "aServerSide": true,
+          "ajax": "api.php?page=channel"
+        });
+
+        // Save edited row
+        $("#edit-form").on("submit", function(event) {
+          event.preventDefault();
+          $.post("datatable.php?edit=" + $('#edit-id').val(), $(this).serialize(), function(data) {
+            var obj = $.parseJSON(data);
+            var tr = $('a[data-id="row-' + $('#edit-id').val() + '"]').parent().parent();
+            $('td:eq(1)', tr).html(obj.name);
+            $('td:eq(2)', tr).html(obj.email);
+            $('td:eq(3)', tr).html(obj.mobile);
+            $('#edit-modal').modal('hide');
+          }).fail(function() { alert('Unable to save data, please try again later.'); });
+        });
+
+        // Add new row
+        $("#add-form").on("submit", function(event) {
+          //console.log($(this).serialize());
+          event.preventDefault();
+          $.post("api.php?page=channel_add", $(this).serialize(), function(data) {
+            console.log(data);
+            if(data=="1"){
+              location.reload();  
+            }
+            else{
+              alert("Unable to save data, please try again later."); 
+            }
+            //var obj = $.parseJSON(data);
+            
+          }).fail(function() { alert('Unable to save data, please try again later.'); });
+        });
+
+      });
+
+      // Edit row
+      function editRow(id) {
+        console.log(id);
+        // if ( 'undefined' != typeof id ) {
+        //   $.getJSON('datatable.php?edit=' + id, function(obj) {
+        //     $('#edit-id').val(obj.id);
+        //     $('#firstname').val(obj.name);
+        //     $('#email').val(obj.email);
+        //     $('#mobile').val(obj.mobile);
+        //     $('#edit-modal').modal('show')
+        //   }).fail(function() { alert('Unable to fetch data, please try again later.') });
+        // } else alert('Unknown row id.');
+      }
+
+      // Remove row
+      function removeRow(id) {
+        if ( 'undefined' != typeof id ) {
+          $.get('datatable.php?remove=' + id, function() {
+            $('a[data-id="row-' + id + '"]').parent().parent().remove();
+          }).fail(function() { alert('Unable to fetch data, please try again later.') });
+        } else alert('Unknown row id.');
+      }
+    </script>
   </body>
 </html>
