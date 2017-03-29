@@ -111,24 +111,15 @@ $page="channel";
               </div>
             
 
-            <div class="form-group">
-                <label for="add-status" class="col-sm-2 control-label">Status</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-status" name="status" placeholder="status" required>
-                </div>
-              </div>
-            
-
-            
-            
-
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
+            </div>
             </form>
         </div>
       </div>
+    </div>
     </div>
 
     <!--  Edit Channel -->
@@ -143,21 +134,39 @@ $page="channel";
             <div class="modal-body">
                 <input type="hidden" id="edit-id" value="" class="hidden">
                 <div class="form-group">
-                <label for="firstname" class="col-sm-2 control-label">Firstname</label>
+                <label for="firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname" required>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">E-mail</label>
+                <label for="email" class="col-sm-2 control-label">Src</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail address" required>
+                    <input type="test" class="form-control" id="src" name="src" placeholder="Src" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Mobile</label>
+                <label for="mobile" class="col-sm-2 control-label">Icon</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile" required>
+                    <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mobile" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-type" class="col-sm-2 control-label">Type</label>
+                <div class="col-sm-10">
+                    <select class="form-control" id="type" name="type">
+                      <option value="live">live</option>
+                      <option value="delay">delay</option>
+                      <option value="dvr">dvr</option>
+                      <option value="inactive">inactive</option>
+                    </select>
+                    
                 </div>
               </div>
             </div>
@@ -192,13 +201,9 @@ $page="channel";
         // Save edited row
         $("#edit-form").on("submit", function(event) {
           event.preventDefault();
-          $.post("datatable.php?edit=" + $('#edit-id').val(), $(this).serialize(), function(data) {
+          $.post("api.php?page=channel_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
             var obj = $.parseJSON(data);
-            var tr = $('a[data-id="row-' + $('#edit-id').val() + '"]').parent().parent();
-            $('td:eq(1)', tr).html(obj.name);
-            $('td:eq(2)', tr).html(obj.email);
-            $('td:eq(3)', tr).html(obj.mobile);
-            $('#edit-modal').modal('hide');
+            location.reload(); 
           }).fail(function() { alert('Unable to save data, please try again later.'); });
         });
 
@@ -222,23 +227,41 @@ $page="channel";
       });
 
       // Edit row
-      function editRow(id) {
+      function editRow(id,category,icon,type1) {
         console.log(id);
-        // if ( 'undefined' != typeof id ) {
-        //   $.getJSON('datatable.php?edit=' + id, function(obj) {
-        //     $('#edit-id').val(obj.id);
-        //     $('#firstname').val(obj.name);
-        //     $('#email').val(obj.email);
-        //     $('#mobile').val(obj.mobile);
-        //     $('#edit-modal').modal('show')
-        //   }).fail(function() { alert('Unable to fetch data, please try again later.') });
-        // } else alert('Unknown row id.');
+        if ( 'undefined' != typeof id ) {
+          $.getJSON('api.php?page=channel_view&ch_no=' + id, function(obj) {
+            console.log(obj);
+            msg=obj;
+            for(var i=0;i<msg.length;i++){
+              if(msg[i].search("CH=")==0){
+                var res = msg[i].replace("CH=", "");
+                $('#edit-id').val(res);
+              }else if(msg[i].search("name=")==0){
+                var res = msg[i].replace("name=", "");
+                $('#name').val(res);
+              }else if(msg[i].search("src=")==0){
+                var res = msg[i].replace("src=", "");
+                $('#src').val(res);
+              }else if(msg[i].search("src=")==0){
+                var res = msg[i].replace("src=", "");
+                $('#src').val(res);
+              }
+              $('#category').val(category);
+              $('#icon').val(icon);
+              $('#type').val(type1);
+            }
+            
+            
+            $('#edit-modal').modal('show')
+          }).fail(function() { alert('Unable to fetch data, please try again later.') });
+        } else alert('Unknown row id.');
       }
 
       // Remove row
       function removeRow(id) {
         if ( 'undefined' != typeof id ) {
-          $.get('datatable.php?remove=' + id, function() {
+          $.get('api.php?page=channel_delete&id=' + id, function() {
             $('a[data-id="row-' + id + '"]').parent().parent().remove();
           }).fail(function() { alert('Unable to fetch data, please try again later.') });
         } else alert('Unknown row id.');

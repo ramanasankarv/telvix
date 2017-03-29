@@ -65,13 +65,25 @@ if($page=="login"){
 					$res1[]=str_replace("type=", "", $response[$i+5]);
 					$res1[]=str_replace("status=", "", $response[$i+6]);
 					$res1[]=str_replace("bitrate=", "", $response[$i+7]);
-					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . serialize($res1) . ');" class="btn btn-md btn-success" style="font-size:8px;">edit</a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="btn btn-default btn-md" style="background-color: #c83a2a;border-color: #b33426; color: #ffffff;font-size:8px;">remove</a>'));
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[4].'\',\''.$res1[3].'\',\''.$res1[5].'\');" class="btn btn-md btn-success" style="font-size:8px;">edit</a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="btn btn-default btn-md" style="background-color: #c83a2a;border-color: #b33426; color: #ffffff;font-size:8px;">remove</a>'));
 					
 				}
 				
 			}
 			//die();
 			echo json_encode($output);
+		}else if($page=="channel_view"){
+			$ch_no=$_GET['ch_no'];
+			$apiurl=vsprintf("http://%s:%s/server/query_channel_more?token=%s&ch_no=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$ch_no,'sdfdf'));
+
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			//print_r($response);
+
+			echo json_encode($response);
+
+
 		}else if($page=="channel_add"){
 
 			$ch_name=$_POST['name'];
@@ -80,12 +92,34 @@ if($page=="login"){
 			$icon=$_POST['icon'];
 			$type=$_POST['type'];
 
-			$apiurl=vsprintf("http://%s:%s/server/add_channel?token=%s&ch_name=%s&src=%s&category=%s&icon=%s&type=%s",array($szezserverip,$szAPIport,$_SESSION["token"], urlencode($ch_name),urlencode($src),urlencode($category),urlencode($icon),urlencode($type)));
+			$apiurl=vsprintf("http://%s:%s/server/add_channel?token=%s&ch_name=%s&src=%s&category=%s&icon=%s&type=%s",array($szezserverip,$szAPIport,$_SESSION["token"], $ch_name,urlencode($src),urlencode($category),urlencode($icon),urlencode($type)));
 
 			$res = file_get_contents($apiurl);
-			echo json_encode($res);
+			echo ($res);
 
-		}	
+		}else if($page=="channel_update"){
+			$id=$_GET['id'];
+			$ch_name=$_POST['name'];
+			$src=$_POST['src'];
+			$category=$_POST['category'];
+			$icon=$_POST['icon'];
+			$type=$_POST['type'];
+
+			$apiurl=vsprintf("http://%s:%s/server/update_channel?token=%s&ch_no=%s&ch_name=%s&src=%s&category=%s&icon=%s&type=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id, $ch_name,urlencode($src),urlencode($category),urlencode($icon),urlencode($type)));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
+		}else if($page=="channel_delete"){
+			$id=$_GET['id'];
+			
+
+			$apiurl=vsprintf("http://%s:%s/server/del_channel?token=%s&ch_no=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
+		}		
 	}
 	else{
 		$result["code"]=400;
