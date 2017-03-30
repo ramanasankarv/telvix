@@ -64,8 +64,8 @@ if($page=="login"){
 					$res1[]=str_replace("category=", "", $response[$i+4]);
 					$res1[]=str_replace("type=", "", $response[$i+5]);
 					$res1[]=str_replace("status=", "", $response[$i+6]);
-					$res1[]=str_replace("bitrate=", "", $response[$i+7]);
-					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[4].'\',\''.$res1[3].'\',\''.$res1[5].'\');" class="btn btn-md btn-success" style="font-size:8px;">edit</a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="btn btn-default btn-md" style="background-color: #c83a2a;border-color: #b33426; color: #ffffff;font-size:8px;">remove</a>'));
+					//$res1[]=str_replace("bitrate=", "", $response[$i+7]);
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[4].'\',\''.$res1[3].'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;<a href="javascript:void(0)" onclick="play_channel(' . $res1[0] . ',\'ch\',0,\''.$_SESSION["token"].'\',\''.$res1[2].'\');"><span class="glyphicon glyphicon-play"></span></a>'));
 					
 				}
 				

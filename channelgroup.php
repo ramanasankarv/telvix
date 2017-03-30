@@ -19,7 +19,7 @@ $page="channel";
     <!-- styles -->
     <link href="css/styles.css" rel="stylesheet">
     
-    <link href="css/dataTables.css" rel="stylesheet">
+    <link href="css/dataTable.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,7 +41,7 @@ $page="channel";
           
           <div class="panel-body">
             <div class="table table-responsive demo-x content">
-              <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+              <table id="example" class="table table-hover" cellspacing="0" width="100%">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -51,7 +51,8 @@ $page="channel";
                     <th>Category</th>
                     <th>Type</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Bitrate</th>
+                    <th style="background-image: none;width:100px;">Edit</th>
                   </tr>
                 </thead>
               </table>
@@ -178,15 +179,6 @@ $page="channel";
               <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
             </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Video channel -->
-    <div class="modal fade" id="channel-modal" tabindex="-1" role="dialog" aria-labelledby="channel-modal-label">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
         </div>
       </div>
     </div>

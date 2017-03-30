@@ -2,20 +2,18 @@
 <div class='sidebar content-box' style='display: block;'>
 	<ul class='nav'>
 		<?php if($page=="index")
-			echo "<li class='current'><a href='index.html'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>";
+			echo "<li class='current'><a href='index.php'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>";
 			else
-				echo "<li><a href='index.html'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>";
-		if($page == "channel" || $page=="group")
-			echo "<li class='submenu current open'>";
+				echo "<li><a href='index.php'><i class='glyphicon glyphicon-home'></i> Dashboard</a></li>";
+		if($page == "channel")
+			echo "<li class='current'><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
 		else
-			echo "<li class='submenu'>";
+			echo "<li><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
+		if($page == "movie")
+			echo "<li class='current'><a href='movie.php'><i class='glyphicon glyphicon-facetime-video'></i> Movie</a></li>";
+		else
+			echo "<li><a href='movie.php'><i class='glyphicon glyphicon-facetime-video'></i> Movie</a></li>";
 		?>
-			<a href='#'><i class='glyphicon glyphicon-list'></i> Channel<span class='caret pull-right'></span></a>
-			<ul>
-				<li><a href='channel.php'>Manage Channel</a></li>
-				<li><a href='channelgroup.php'>Channel Group</a></li>
-			</ul>
-		</li>
 		<li><a href='stats.html'><i class='glyphicon glyphicon-stats'></i> Statistics (Charts)</a></li>
 		<li><a href='tables.html'><i class='glyphicon glyphicon-list'></i> Tables</a></li>
 		<li><a href='buttons.html'><i class='glyphicon glyphicon-record'></i> Buttons</a></li>

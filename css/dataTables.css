@@ -1,6 +1,8 @@
 /*
  * Table styles
  */
+embed{margin: 15px; width: 95%;}
+
 table.dataTable {
   width: 100%;
   margin: 0 auto;
