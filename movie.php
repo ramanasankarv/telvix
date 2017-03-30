@@ -52,7 +52,7 @@ $page="movie";
                       <th>Source</th>
                       <th>Icon</th>
                       <th>Category</th>
-                      <th>Duration(min.)</th>
+                      <th>Duration</th>
                       <th>Status</th>
                       <th>Action</th>
                     </tr>
