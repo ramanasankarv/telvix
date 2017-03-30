@@ -14,12 +14,12 @@ $page="channel";
   <head>
     <title>Telvix TV - Channel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="css/styles.css" rel="stylesheet">
     
-    <link href="css/dataTables.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,11 +36,14 @@ $page="channel";
         </div>
 
         <div class="col-md-9">
-          <div class="content-box-large">
-          <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal"><b>Add Channel</b></button>        
+        <div class="content-box-large">
+          <div class="panel-heading">
+          <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal"><b>Add Channel</b></button> 
+        </div>
+                 
           
           <div class="panel-body">
-            <div class="table table-responsive demo-x content">
+            <div class="table-responsive">
               <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
                 <thead>
                   <tr>
@@ -58,7 +61,7 @@ $page="channel";
             </div>
           </div>
           
-          </div>
+         </div>
         </div>
 
       </div>
@@ -190,13 +193,19 @@ $page="channel";
         </div>
       </div>
     </div>
-
+    <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="vendors/datatables/js/jquery.dataTables.min.js"></script>
+
+    <script src="vendors/datatables/dataTables.bootstrap.js"></script>
+
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+    
     <script type="text/javascript" language="javascript" class="init">
       $(document).ready(function() {
 
@@ -207,7 +216,8 @@ $page="channel";
         $('#example').dataTable({
           "aProcessing": true,
           "aServerSide": true,
-          "ajax": "api.php?page=channel"
+          "bAutoWidth" : true,
+          "sAjaxSource": "api.php?page=channel"
         });
 
         // Save edited row

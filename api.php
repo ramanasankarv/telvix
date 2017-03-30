@@ -72,6 +72,34 @@ if($page=="login"){
 			}
 			//die();
 			echo json_encode($output);
+		}else if($page=="movie"){
+			$apiurl=vsprintf("http://%s:%s/server/query_movie_list?token=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["token"],'sdfdf'));
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			//print_r($response);
+			
+			$j=0;
+			for($i=0;$i<count($response);$i=$i+8){
+				//echo "sdfd";
+				$res1= array();
+				//echo $response[$i];
+				if($response[$i]!="" || $response[$i]!=0){
+					$res1[]=str_replace("movieno=", "", $response[$i]);
+					$res1[]=str_replace("name=", "", $response[$i+1]);
+					$res1[]=str_replace("src=", "", $response[$i+2]);
+					$res1[]=str_replace("img=", "", $response[$i+3]);
+					$res1[]=str_replace("category=", "", $response[$i+4]);
+					$res1[]=str_replace("duration=", "", $response[$i+5]);
+					$res1[]=str_replace("status=", "", $response[$i+7]);
+					//$res1[]=str_replace("bitrate=", "", $response[$i+7]);
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[4].'\',\''.$res1[3].'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;<a href="javascript:void(0)" onclick="play_channel(' . $res1[0] . ',\'ch\',0,\''.$_SESSION["token"].'\',\''.$res1[2].'\');"><span class="glyphicon glyphicon-play"></span></a>'));
+					
+				}
+				
+			}
+			//die();
+			echo json_encode($output);
 		}else if($page=="channel_view"){
 			$ch_no=$_GET['ch_no'];
 			$apiurl=vsprintf("http://%s:%s/server/query_channel_more?token=%s&ch_no=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$ch_no,'sdfdf'));
