@@ -38,7 +38,7 @@ $page="movie";
         <div class="col-md-9">
           <div class="content-box-large">
             <div class="panel-heading">
-              <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal"><b>Add Movie</b></button> 
+              <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal" onclick="$('#add-movie_no').val($('#example tr').length)"><b>Add Movie</b></button> 
             </div>
                  
           
@@ -65,23 +65,25 @@ $page="movie";
         </div>
 
       </div>
-    </div>
     <?php include('includes/footer.php');?>
+    </div>
+    
 
-    <!--  Add Channel -->
+    <!--  Add Movie -->
     <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal-label">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <form class="form-horizontal" id="add-form">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="add-modal-label">Add new Channel</h4>
+              <h4 class="modal-title" id="add-modal-label">Add new Movie</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                 <label for="add-firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-name" name="name" placeholder="name" required>
+                    <input type="hidden" class="form-control" id="add-movie_no" name="movie_no" placeholder="movie_no" required>
                 </div>
               </div>
               <div class="form-group">
@@ -91,7 +93,7 @@ $page="movie";
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Icon</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Image</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-icon" name="icon" placeholder="Icon" required>
                 </div>
@@ -103,20 +105,6 @@ $page="movie";
                 </div>
               </div>
             
-            <div class="form-group">
-                <label for="add-type" class="col-sm-2 control-label">Type</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="add-type" name="type">
-                      <option value="live">live</option>
-                      <option value="delay">delay</option>
-                      <option value="dvr">dvr</option>
-                      <option value="inactive">inactive</option>
-                    </select>
-                    
-                </div>
-              </div>
-            
-
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Save changes</button>
@@ -152,7 +140,7 @@ $page="movie";
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Icon</label>
+                <label for="mobile" class="col-sm-2 control-label">Image</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" required>
                 </div>
@@ -163,18 +151,7 @@ $page="movie";
                     <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="add-type" class="col-sm-2 control-label">Type</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="type" name="type">
-                      <option value="live">live</option>
-                      <option value="delay">delay</option>
-                      <option value="dvr">dvr</option>
-                      <option value="inactive">inactive</option>
-                    </select>
-                    
-                </div>
-              </div>
+              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,6 +171,21 @@ $page="movie";
       </div>
     </div>
 
+    <!-- Modal confirm -->
+    <div class="modal" id="confirmModal" style="display: none; z-index: 1050;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body" id="confirmMessage">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="confirmOk">Ok</button>
+                <button type="button" class="btn btn-default" id="confirmCancel">Cancel</button>
+              </div>
+        </div>
+      </div>
+    </div>
+
+
     <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -208,6 +200,7 @@ $page="movie";
     <script src="js/custom.js"></script>
     
     <script type="text/javascript" language="javascript" class="init">
+    var movies_count=1;
       $(document).ready(function() {
 
         // ATW
@@ -249,45 +242,42 @@ $page="movie";
       });
 
       // Edit row
-      function editRow(id,category,icon,type1) {
+      function editRow(id,name,source,category,icon) {
         console.log(id);
         if ( 'undefined' != typeof id ) {
-          $.getJSON('api.php?page=movie_view&ch_no=' + id, function(obj) {
-            console.log(obj);
-            msg=obj;
-            for(var i=0;i<msg.length;i++){
-              if(msg[i].search("CH=")==0){
-                var res = msg[i].replace("CH=", "");
-                $('#edit-id').val(res);
-              }else if(msg[i].search("name=")==0){
-                var res = msg[i].replace("name=", "");
-                $('#name').val(res);
-              }else if(msg[i].search("src=")==0){
-                var res = msg[i].replace("src=", "");
-                $('#src').val(res);
-              }else if(msg[i].search("src=")==0){
-                var res = msg[i].replace("src=", "");
-                $('#src').val(res);
-              }
-              $('#category').val(category);
-              $('#icon').val(icon);
-              $('#type').val(type1);
-            }
-            
-            
-            $('#edit-modal').modal('show')
-          }).fail(function() { alert('Unable to fetch data, please try again later.') });
+          $('#edit-id').val(id);
+          $('#name').val(name);
+          $('#src').val(source);
+          $('#category').val(category);
+          $('#icon').val(icon);
+          $('#edit-modal').modal('show')
+          
         } else alert('Unknown row id.');
       }
 
       // Remove row
       function removeRow(id) {
         if ( 'undefined' != typeof id ) {
-          $.get('api.php?page=movie_delete&id=' + id, function() {
-            $('a[data-id="row-' + id + '"]').parent().parent().remove();
-          }).fail(function() { alert('Unable to fetch data, please try again later.') });
+          confirmDialog('Are you sure you want delete the channel', function(){
+              //My code to delete
+            $.get('api.php?page=movie_delete&id=' + id, function() {
+              $('a[data-id="row-' + id + '"]').parent().parent().remove();
+            }).fail(function() { alert('Unable to fetch data, please try again later.') });
+          });
         } else alert('Unknown row id.');
       }
+
+      function confirmDialog(message, onConfirm){
+          var fClose = function(){
+          modal.modal("hide");
+          };
+          var modal = $("#confirmModal");
+          modal.modal("show");
+          $("#confirmMessage").empty().append(message);
+          $("#confirmOk").one('click', onConfirm);
+          $("#confirmOk").one('click', fClose);
+          $("#confirmCancel").one("click", fClose);
+        }
     </script>
   </body>
 </html>

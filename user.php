@@ -7,12 +7,12 @@ if(isset($_SESSION["token"])){
 else{
 	header('Location: login.html');
 }
-$page="channel";
+$page="user";
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Telvix TV - Channel</title>
+    <title>Telvix TV - Movie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
     <!-- Bootstrap -->
@@ -36,52 +36,53 @@ $page="channel";
         </div>
 
         <div class="col-md-9">
-        <div class="content-box-large">
-          <div class="panel-heading">
-          <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal"><b>Add Channel</b></button> 
-        </div>
+          <div class="content-box-large">
+            <div class="panel-heading">
+              <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal" onclick="$('#add-movie_no').val($('#example tr').length)"><b>Add User</b></button> 
+            </div>
                  
           
-          <div class="panel-body">
-            <div class="table-responsive">
-              <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Src</th>
-                    <th>Icon</th>
-                    <th>Category</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-              </table>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+                  <thead>
+                    <tr>
+                      <th>User Name</th>
+                      <th>Password</th>
+                      <th>Group</th>
+                      <th>Expired Time</th>
+                      <th>IP</th>
+                      <th>macid</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
             </div>
-          </div>
           
          </div>
         </div>
 
       </div>
-    
     <?php include('includes/footer.php');?>
     </div>
-    <!--  Add Channel -->
+    
+
+    <!--  Add Movie -->
     <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal-label">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <form class="form-horizontal" id="add-form">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="add-modal-label">Add new Channel</h4>
+              <h4 class="modal-title" id="add-modal-label">Add new Movie</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                 <label for="add-firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-name" name="name" placeholder="name" required>
+                    <input type="hidden" class="form-control" id="add-movie_no" name="movie_no" placeholder="movie_no" required>
                 </div>
               </div>
               <div class="form-group">
@@ -91,7 +92,7 @@ $page="channel";
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Icon</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Image</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-icon" name="icon" placeholder="Icon" required>
                 </div>
@@ -103,20 +104,6 @@ $page="channel";
                 </div>
               </div>
             
-            <div class="form-group">
-                <label for="add-type" class="col-sm-2 control-label">Type</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="add-type" name="type">
-                      <option value="live">live</option>
-                      <option value="delay">delay</option>
-                      <option value="dvr">dvr</option>
-                      <option value="inactive">inactive</option>
-                    </select>
-                    
-                </div>
-              </div>
-            
-
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Save changes</button>
@@ -152,7 +139,7 @@ $page="channel";
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Icon</label>
+                <label for="mobile" class="col-sm-2 control-label">Image</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" required>
                 </div>
@@ -163,18 +150,7 @@ $page="channel";
                     <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="add-type" class="col-sm-2 control-label">Type</label>
-                <div class="col-sm-10">
-                    <select class="form-control" id="type" name="type">
-                      <option value="live">live</option>
-                      <option value="delay">delay</option>
-                      <option value="dvr">dvr</option>
-                      <option value="inactive">inactive</option>
-                    </select>
-                    
-                </div>
-              </div>
+              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -207,6 +183,8 @@ $page="channel";
         </div>
       </div>
     </div>
+
+
     <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -221,6 +199,7 @@ $page="channel";
     <script src="js/custom.js"></script>
     
     <script type="text/javascript" language="javascript" class="init">
+    var movies_count=1;
       $(document).ready(function() {
 
         // ATW
@@ -230,14 +209,13 @@ $page="channel";
         $('#example').dataTable({
           "aProcessing": true,
           "aServerSide": true,
-          "bAutoWidth" : true,
-          "sAjaxSource": "api.php?page=channel"
+          "sAjaxSource": "api.php?page=user"
         });
 
         // Save edited row
         $("#edit-form").on("submit", function(event) {
           event.preventDefault();
-          $.post("api.php?page=channel_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
+          $.post("api.php?page=movie_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
             var obj = $.parseJSON(data);
             location.reload(); 
           }).fail(function() { alert('Unable to save data, please try again later.'); });
@@ -247,7 +225,7 @@ $page="channel";
         $("#add-form").on("submit", function(event) {
           //console.log($(this).serialize());
           event.preventDefault();
-          $.post("api.php?page=channel_add", $(this).serialize(), function(data) {
+          $.post("api.php?page=movie_add", $(this).serialize(), function(data) {
             console.log(data);
             if(data=="1"){
               location.reload();  
@@ -263,34 +241,16 @@ $page="channel";
       });
 
       // Edit row
-      function editRow(id,category,icon,type1) {
+      function editRow(id,name,source,category,icon) {
         console.log(id);
         if ( 'undefined' != typeof id ) {
-          $.getJSON('api.php?page=channel_view&ch_no=' + id, function(obj) {
-            console.log(obj);
-            msg=obj;
-            for(var i=0;i<msg.length;i++){
-              if(msg[i].search("CH=")==0){
-                var res = msg[i].replace("CH=", "");
-                $('#edit-id').val(res);
-              }else if(msg[i].search("name=")==0){
-                var res = msg[i].replace("name=", "");
-                $('#name').val(res);
-              }else if(msg[i].search("src=")==0){
-                var res = msg[i].replace("src=", "");
-                $('#src').val(res);
-              }else if(msg[i].search("src=")==0){
-                var res = msg[i].replace("src=", "");
-                $('#src').val(res);
-              }
-              $('#category').val(category);
-              $('#icon').val(icon);
-              $('#type').val(type1);
-            }
-            
-            
-            $('#edit-modal').modal('show')
-          }).fail(function() { alert('Unable to fetch data, please try again later.') });
+          $('#edit-id').val(id);
+          $('#name').val(name);
+          $('#src').val(source);
+          $('#category').val(category);
+          $('#icon').val(icon);
+          $('#edit-modal').modal('show')
+          
         } else alert('Unknown row id.');
       }
 
@@ -299,13 +259,13 @@ $page="channel";
         if ( 'undefined' != typeof id ) {
           confirmDialog('Are you sure you want delete the channel', function(){
               //My code to delete
-            $.get('api.php?page=channel_delete&id=' + id, function() {
+            $.get('api.php?page=movie_delete&id=' + id, function() {
               $('a[data-id="row-' + id + '"]').parent().parent().remove();
             }).fail(function() { alert('Unable to fetch data, please try again later.') });
           });
-          
         } else alert('Unknown row id.');
       }
+
       function confirmDialog(message, onConfirm){
           var fClose = function(){
           modal.modal("hide");
