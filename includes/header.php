@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 if(isset($_SESSION["token"])){
   if($_SESSION["token"]<0){
     $str='<a href="#">Login</a>';
