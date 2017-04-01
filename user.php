@@ -75,35 +75,48 @@ $page="user";
           <form class="form-horizontal" id="add-form">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="add-modal-label">Add new Movie</h4>
+              <h4 class="modal-title" id="add-modal-label">Add new User</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                <label for="add-firstname" class="col-sm-2 control-label">Name</label>
+                <label for="add-firstname" class="col-sm-2 control-label">User Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-name" name="name" placeholder="name" required>
                     <input type="hidden" class="form-control" id="add-movie_no" name="movie_no" placeholder="movie_no" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-email" class="col-sm-2 control-label">Src</label>
+                <label for="add-email" class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-src" name="src" placeholder="Src" required>
+                    <input type="text" class="form-control" id="add-password" name="password" placeholder="Password" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Image</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Group</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-icon" name="icon" placeholder="Icon" required>
+                    <input type="text" class="form-control" id="add-group" name="group" placeholder="Group" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Category</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Expired Time</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-category" name="category" placeholder="Category" required>
+                    <input type="text" class="form-control" id="add-expired_time" name="expired_time" placeholder="Expired Time" required>
                 </div>
               </div>
-            
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">IP</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="add-ip" name="ip" placeholder="IP">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">MAC Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="add-macid" name="macid" placeholder="macid">
+                </div>
+              </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Save changes</button>
@@ -129,28 +142,41 @@ $page="user";
                 <div class="form-group">
                 <label for="firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                    <input type="text" readonly="true" class="form-control" id="name" name="name" placeholder="name" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Src</label>
+                <label for="email" class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="test" class="form-control" id="src" name="src" placeholder="Src" required>
+                    <input type="test" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Image</label>
+                <label for="mobile" class="col-sm-2 control-label">Group</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" required>
+                    <input type="text" class="form-control" id="group" name="group" placeholder="Group" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Category</label>
+                <label for="mobile" class="col-sm-2 control-label">Expired Time</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
+                    <input type="text" class="form-control" id="expired_time" name="expired_time" placeholder="Expired Time" required>
                 </div>
               </div>
-              
+  
+              <div class="form-group">
+                <label for="mobile" class="col-sm-2 control-label">IP</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="ip" name="ip" placeholder="IP">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">MAC Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="macid" name="macid" placeholder="MAC Address">
+                </div>
+              </div>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -215,7 +241,7 @@ $page="user";
         // Save edited row
         $("#edit-form").on("submit", function(event) {
           event.preventDefault();
-          $.post("api.php?page=movie_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
+          $.post("api.php?page=user_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
             var obj = $.parseJSON(data);
             location.reload(); 
           }).fail(function() { alert('Unable to save data, please try again later.'); });
@@ -225,7 +251,7 @@ $page="user";
         $("#add-form").on("submit", function(event) {
           //console.log($(this).serialize());
           event.preventDefault();
-          $.post("api.php?page=movie_add", $(this).serialize(), function(data) {
+          $.post("api.php?page=user_add", $(this).serialize(), function(data) {
             console.log(data);
             if(data=="1"){
               location.reload();  
@@ -241,14 +267,16 @@ $page="user";
       });
 
       // Edit row
-      function editRow(id,name,source,category,icon) {
-        console.log(id);
-        if ( 'undefined' != typeof id ) {
-          $('#edit-id').val(id);
+      function editRow(name,password,group,expired_time,userip,macid) {
+        //console.log(id);
+        if ( 'undefined' != typeof name ) {
           $('#name').val(name);
-          $('#src').val(source);
-          $('#category').val(category);
-          $('#icon').val(icon);
+          $('#password').val(password);
+          $('#group').val(group);
+          $('#expired_time').val(expired_time);
+          $('#ip').val(userip);
+          $('#macid').val(macid);
+
           $('#edit-modal').modal('show')
           
         } else alert('Unknown row id.');
@@ -257,9 +285,9 @@ $page="user";
       // Remove row
       function removeRow(id) {
         if ( 'undefined' != typeof id ) {
-          confirmDialog('Are you sure you want delete the channel', function(){
+          confirmDialog('Are you sure you want delete the user', function(){
               //My code to delete
-            $.get('api.php?page=movie_delete&id=' + id, function() {
+            $.get('api.php?page=user_delete&id=' + id, function() {
               $('a[data-id="row-' + id + '"]').parent().parent().remove();
             }).fail(function() { alert('Unable to fetch data, please try again later.') });
           });

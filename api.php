@@ -139,7 +139,7 @@ if($page=="login"){
 					$res1[]=str_replace("macid=", "", $response[$i+5]);
 					
 					
-					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[4].'\',\''.$image.'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(\'' . $res1[0] . '\',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[3].'\',\''.$res1[4].'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(\'' . $res1[0] . '\');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
 					
 				}
 				
@@ -185,6 +185,20 @@ if($page=="login"){
 			$res = file_get_contents($apiurl);
 			echo ($res);
 
+		}else if($page=="user_add"){
+
+			$user_name=$_POST['name'];
+			$password=$_POST['password'];
+			$group=$_POST['group'];
+			$expired_time=$_POST['expired_time'];
+			$ip=$_POST['ip'];
+			$macid=$_POST['macid'];
+			
+			$apiurl=vsprintf("http://%s:%s/server/add_user?token=%s&username=%s&password=%s&group=%s&expired_time=%s&userip=%s&macid=%s",array($szezserverip,$szAPIport,$_SESSION["token"], $user_name,urlencode($password),urlencode($group),$expired_time,$ip,$macid));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
 		}else if($page=="channel_update"){
 			$id=$_GET['id'];
 			$ch_name=$_POST['name'];
@@ -211,6 +225,20 @@ if($page=="login"){
 			$res = file_get_contents($apiurl);
 			echo ($res);
 
+		}else if($page=="user_update"){
+
+			$user_name=$_POST['name'];
+			$password=$_POST['password'];
+			$group=$_POST['group'];
+			$expired_time=$_POST['expired_time'];
+			$ip=$_POST['ip'];
+			$macid=$_POST['macid'];
+			
+			$apiurl=vsprintf("http://%s:%s/server/update_user?token=%s&username=%s&password=%s&group=%s&expired_time=%s&userip=%s&macid=%s",array($szezserverip,$szAPIport,$_SESSION["token"], $user_name,urlencode($password),urlencode($group),$expired_time,$ip,$macid));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
 		}else if($page=="channel_delete"){
 			$id=$_GET['id'];
 			
@@ -225,6 +253,16 @@ if($page=="login"){
 			
 
 			$apiurl=vsprintf("http://%s:%s/server/del_movie?token=%s&movie_no=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
+		}
+		else if($page=="user_delete"){
+			$id=$_GET['id'];
+			
+
+			$apiurl=vsprintf("http://%s:%s/server/del_user?token=%s&username=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id));
 
 			$res = file_get_contents($apiurl);
 			echo ($res);
