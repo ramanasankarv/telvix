@@ -412,6 +412,60 @@ if($page=="login"){
 			$res = file_get_contents($apiurl);
 			echo ($res);
 
+		}
+		else if($page=="epg_delete"){
+			$id=$_GET['id'];
+			$channel=$_POST['ch_no'];
+			$starttime=$_POST['starttime'];
+
+			$apiurl=vsprintf("http://%s:%s/server/del_epg_info?token=%s&ch_no=%s&&program_no=%s&starttime=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id,$channel,$starttime));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
+		}else if($page=="epg"){
+			$channel=$_POST['ch_no'];
+			$from_year=$_POST['from_year'];
+			$from_month=$_POST['from_month'];
+			$to_month=$_POST['to_month'];
+
+			$apiurl=vsprintf("http://%s:%s/server/get_epg_info?token=%s&ch_no=%s&from_year=%s&from_month=%s&to_month=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$channel,$from_year,$from_month,$to_month));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
+		}
+		else if($page=="epg_add"){
+			$channel=$_POST['ch_no'];
+			$program_no=$_POST['program_no'];
+			$starttime=$_POST['starttime'];
+			$stoptime=$_POST['stoptime'];
+			$program_title=$_POST['program_title'];
+			$program_descrption=$_POST['program_descrption'];
+			$program_icon$_POST['program_icon'];
+			$program_rec=$_POST['program_rec'];
+
+			$apiurl=vsprintf("http://%s:%s/server/add_epg_info?token=%s&ch_no=%s&&program_no=%s&starttime=%s&stoptime=%s&program_title=%s&program_descrption=%s&program_icon=%s&program_rec=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$channel,$program_no,$starttime,$stoptime,$program_title,$program_descrption,$program_icon,$program_rec));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
+		}
+		else if($page=="epg_update"){
+			$channel=$_POST['ch_no'];
+			$program_no=$_POST['program_no'];
+			$starttime=$_POST['starttime'];
+			$stoptime=$_POST['stoptime'];
+			$program_title=$_POST['program_title'];
+			$program_descrption=$_POST['program_descrption'];
+			$program_icon$_POST['program_icon'];
+			$program_rec=$_POST['program_rec'];
+
+			$apiurl=vsprintf("http://%s:%s/server/update_epg_info?token=%s&ch_no=%s&&program_no=%s&starttime=%s&stoptime=%s&program_title=%s&program_descrption=%s&program_icon=%s&program_rec=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$channel,$program_no,$starttime,$stoptime,$program_title,$program_descrption,$program_icon,$program_rec));
+
+			$res = file_get_contents($apiurl);
+			echo ($res);
+
 		}		
 	}
 	else{
