@@ -7,12 +7,12 @@ if(isset($_SESSION["token"])){
 else{
 	header('Location: login.html');
 }
-$page="movie";
+$page="group";
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Telvix TV - Movie</title>
+    <title>Telvix TV - Groups</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
     <!-- Bootstrap -->
@@ -38,7 +38,7 @@ $page="movie";
         <div class="col-md-9">
           <div class="content-box-large">
             <div class="panel-heading">
-              <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal" onclick="$('#add-movie_no').val($('#example tr').length)"><b>Add Movie</b></button> 
+              <button type="button" style="padding:10px; margin:0 50px 15px 0;" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#add-modal" onclick="$('#add-movie_no').val($('#example tr').length)"><b>Add Group</b></button> 
             </div>
                  
           
@@ -49,11 +49,9 @@ $page="movie";
                     <tr>
                       <th>#</th>
                       <th>Name</th>
-                      <th>Source</th>
-                      <th>Icon</th>
-                      <th>Category</th>
-                      <th>Duration</th>
-                      <th>Status</th>
+                      <th>Connection</th>
+                      <th>Channel No</th>
+                      <th>Movie Category</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -76,35 +74,37 @@ $page="movie";
           <form class="form-horizontal" id="add-form">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="add-modal-label">Add new Movie</h4>
+              <h4 class="modal-title" id="add-modal-label">Add new Group</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                 <label for="add-firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-name" name="name" placeholder="name" required>
-                    <input type="hidden" class="form-control" id="add-movie_no" name="movie_no" placeholder="movie_no" required>
+                    <input type="hidden" class="form-control" id="add-group_no" name="group_no" placeholder="group_no" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-email" class="col-sm-2 control-label">Src</label>
+                <label for="add-email" class="col-sm-2 control-label">Connection</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-src" name="src" placeholder="Src" required>
+                    <input type="text" class="form-control" id="add-connection" name="connection" placeholder="Connection" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Image</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Channel No</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-icon" name="icon" placeholder="Icon" required>
+                    <input type="text" class="form-control" id="add-channel_no" name="channel_no" placeholder="Channel No" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Category</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Movie Category</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-category" name="category" placeholder="Category" required>
+                    <select multiple="multiple" id="add-mc_src" name="mc_src[]" class="form-control custom-scroll" title="Click to Select a Movie Category">
+                    <option value="all">All</option>
+                    </select>
                 </div>
               </div>
-            
+              
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Save changes</button>
@@ -130,28 +130,30 @@ $page="movie";
                 <div class="form-group">
                 <label for="firstname" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="name" required>
+                    <input type="text" readonly="true" class="form-control" id="name" name="name" placeholder="name" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Src</label>
+                <label for="email" class="col-sm-2 control-label">Connection</label>
                 <div class="col-sm-10">
-                    <input type="test" class="form-control" id="src" name="src" placeholder="Src" required>
+                    <input type="test" class="form-control" id="connection" name="connection" placeholder="Connection" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Image</label>
+                <label for="mobile" class="col-sm-2 control-label">Channel No</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon" required>
+                    <input type="text" class="form-control" id="channel_no" name="channel_no" placeholder="Channel No" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="mobile" class="col-sm-2 control-label">Category</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Movie Category</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="category" name="category" placeholder="Category" required>
+                    <select multiple="multiple" id="mc_src" name="mc_src[]" class="form-control custom-scroll" title="Click to Select a Movie Category">
+                    <option value="all">All</option>
+                    </select>
                 </div>
               </div>
-              
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -210,13 +212,23 @@ $page="movie";
         $('#example').dataTable({
           "aProcessing": true,
           "aServerSide": true,
-          "sAjaxSource": "api.php?page=movie"
+          "sAjaxSource": "api.php?page=group"
         });
+
+        $.get("api.php?page=movie_cat", function(data) {
+            var obj = $.parseJSON(data);
+            for(var i=0;i<obj.length;i++){
+              $('<option>').val(obj[i]).text(obj[i]).appendTo('#add-mc_src');
+              $('<option>').val(obj[i]).text(obj[i]).appendTo('#mc_src');
+            }
+            
+            
+        }).fail(function() { alert('Unable to save data, please try again later.'); });
 
         // Save edited row
         $("#edit-form").on("submit", function(event) {
           event.preventDefault();
-          $.post("api.php?page=movie_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
+          $.post("api.php?page=group_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
             var obj = $.parseJSON(data);
             location.reload(); 
           }).fail(function() { alert('Unable to save data, please try again later.'); });
@@ -224,9 +236,9 @@ $page="movie";
 
         // Add new row
         $("#add-form").on("submit", function(event) {
-          //console.log($(this).serialize());
+          console.log($(this).serialize());
           event.preventDefault();
-          $.post("api.php?page=movie_add", $(this).serialize(), function(data) {
+          $.post("api.php?page=group_add", $(this).serialize(), function(data) {
             console.log(data);
             if(data=="1"){
               location.reload();  
@@ -242,14 +254,15 @@ $page="movie";
       });
 
       // Edit row
-      function editRow(id,name,source,category,icon) {
-        console.log(id);
-        if ( 'undefined' != typeof id ) {
-          $('#edit-id').val(id);
+      function editRow(id,name,password,group,expired_time) {
+        //console.log(id);
+        if ( 'undefined' != typeof name ) {
           $('#name').val(name);
-          $('#src').val(source);
-          $('#category').val(category);
-          $('#icon').val(icon);
+          $('#connection').val(password);
+          $('#channel_no').val(group);
+          //$('#mc_src').val(expired_time);
+          
+          $('#edit-id').val(id);
           $('#edit-modal').modal('show')
           
         } else alert('Unknown row id.');
@@ -258,9 +271,9 @@ $page="movie";
       // Remove row
       function removeRow(id) {
         if ( 'undefined' != typeof id ) {
-          confirmDialog('Are you sure you want delete the movie', function(){
+          confirmDialog('Are you sure you want delete the Group', function(){
               //My code to delete
-            $.get('api.php?page=movie_delete&id=' + id, function() {
+            $.get('api.php?page=group_delete&id=' + id, function() {
               $('a[data-id="row-' + id + '"]').parent().parent().remove();
             }).fail(function() { alert('Unable to fetch data, please try again later.') });
           });

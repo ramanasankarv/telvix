@@ -12,7 +12,7 @@ $page="user";
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Telvix TV - Movie</title>
+    <title>Telvix TV - Users</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
     <!-- Bootstrap -->
@@ -99,8 +99,9 @@ $page="user";
               </div>
               <div class="form-group">
                 <label for="add-mobile" class="col-sm-2 control-label">Expired Time</label>
-                <div class="col-sm-10">
+                <div class="col-sm-10" >
                     <input type="text" class="form-control" id="add-expired_time" name="expired_time" placeholder="Expired Time" required>
+                    
                 </div>
               </div>
               <div class="form-group">
@@ -224,10 +225,21 @@ $page="user";
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
     
+     <link href="vendors/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
+     <script src="vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script> 
+
     <script type="text/javascript" language="javascript" class="init">
     var movies_count=1;
       $(document).ready(function() {
 
+        $(function () {
+          $('#add-expired_time').datepicker({
+            format: 'm/d/yyyy'
+          });
+          $('#expired_time').datepicker({
+            format: 'm/d/yyyy'
+          });
+        });
         // ATW
         if ( top.location.href != location.href ) top.location.href = location.href;
 
