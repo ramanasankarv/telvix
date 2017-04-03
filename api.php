@@ -299,7 +299,7 @@ if($page=="login"){
 			$connection=$_POST['connection'];
 			$channel_no=$_POST['channel_no'];
 			$mc_src=$_POST['mc_src'];
-			
+			$id=$_GET["id"];
 			
 
 			$channel=getCat($szezserverip,$szAPIport);
@@ -328,7 +328,7 @@ if($page=="login"){
 				$ch_src="all=0,".$ch_src;	
 			}
 			
-			$apiurl=vsprintf("http://%s:%s/server/update_group?token=%s&group_name=%s&group_concurrent_connection=%s&group_src=%s&group_mcsrc=%s",array($szezserverip,$szAPIport,$_SESSION["token"], $name,$connection,$channel_no,$ch_src));
+			$apiurl=vsprintf("http://%s:%s/server/update_group?token=%s&group_no=%s&group_name=%s&group_concurrent_connection=%s&group_src=%s&group_mcsrc=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id, $name,$connection,$channel_no,$ch_src));
 			//echo $apiurl;
 			//die();
 			$res = file_get_contents($apiurl);
