@@ -415,11 +415,11 @@ if($page=="login"){
 		}
 		else if($page=="epg_delete"){
 			$id=$_GET['id'];
-			$channel=$_POST['ch_no'];
-			$starttime=$_POST['starttime'];
+			$channel=$_GET['ch_no'];
+			$starttime=$_GET['starttime'];
 
-			$apiurl=vsprintf("http://%s:%s/server/del_epg_info?token=%s&ch_no=%s&&program_no=%s&starttime=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id,$channel,$starttime));
-
+			$apiurl=vsprintf("http://%s:%s/server/del_epg_info?token=%s&ch_no=%s&&program_no=%s&starttime=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$channel,$id,$starttime));
+			//?die();
 			$res = file_get_contents($apiurl);
 			echo ($res);
 
@@ -448,11 +448,14 @@ if($page=="login"){
 					$res1[]=str_replace("title=", "", $response[$i+2]);
 					$res1[] =str_replace("description=", "", $response[$i+3]);
 					
+					$icon=str_replace("icon=", "", $response[$i+4]);
+					$rec=str_replace("rec=", "", $response[$i+5]);
+
 					//$res1[]=str_replace("icon=", "", $response[$i+4]);
 					//$res1[]=str_replace("rec=", "", $response[$i+5]);
-					
-					
-					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[2] . '" href="javascript:editRow(\'' . $res1[0] . '\',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[3].'\',\''.$res1[4].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(\'' . $res1[1] . '\');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
+					$k=$j+1;
+					$j++;
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(\'' . $res1[0] . '\',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[3].'\',\''.$icon.'\',\''.$rec.'\','.$k.');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(\'' . $res1[0] . '\','.$k.');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
 					
 				}
 				
@@ -478,8 +481,7 @@ if($page=="login"){
 			$program_rec=$_POST['program_rec'];
 
 			$apiurl=vsprintf("http://%s:%s/server/add_epg_info?token=%s&ch_no=%s&&program_no=%s&starttime=%s&stoptime=%s&program_title=%s&program_descrption=%s&program_icon=%s&program_rec=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$channel,$program_no,$starttime,$stoptime,$program_title,$program_descrption,$program_icon,$program_rec));
-			echo $apiurl;
-			die();
+			
 			$res = file_get_contents($apiurl);
 			echo ($res);
 

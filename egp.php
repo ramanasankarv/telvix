@@ -203,7 +203,7 @@ $page="egp";
                 <div class="form-group">
                 <label for="add-firstname" class="col-sm-2 control-label">Program Title</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-program_title" name="program_title" placeholder="program title" required>
+                    <input type="text" class="form-control" id="program_title" name="program_title" placeholder="program title" required>
                     <input type="hidden" class="form-control" id="ch_no" name="ch_no" placeholder="ch_no" required>
                     <input type="hidden" class="form-control" id="program_no" name="program_no" placeholder="program_no" required>
                 </div>
@@ -300,16 +300,16 @@ $page="egp";
 
         $(function () {
           $('#add-starttime').datetimepicker({
-            format: 'yyyy/mm/d HH:i:S'
+            format: 'yyyy/mm/d HH:ii:ss'
           });
           $('#add-stoptime').datetimepicker({
-            format: 'yyyy/mm/d HH:i:S'
+            format: 'yyyy/mm/d HH:ii:ss'
           });
           $('#starttime').datetimepicker({
-            format: 'yyyy/mm/d HH:i:S'
+            format: 'yyyy/mm/d HH:ii:ss'
           });
           $('#stoptime').datetimepicker({
-            format: 'yyyy/mm/d HH:i:S'
+            format: 'yyyy/mm/d HH:ii:ss'
           });
         });
         // ATW
@@ -331,7 +331,7 @@ $page="egp";
         // Save edited row
         $("#edit-form").on("submit", function(event) {
           event.preventDefault();
-          $.post("api.php?page=group_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
+          $.post("api.php?page=epg_update&id=" + $('#edit-id').val(), $(this).serialize(), function(data) {
             var obj = $.parseJSON(data);
             location.reload(); 
           }).fail(function() { alert('Unable to save data, please try again later.'); });
@@ -357,26 +357,35 @@ $page="egp";
       });
 
       // Edit row
-      function editRow(id,name,password,group,expired_time) {
+      function editRow(starttime,stoptime,title,description,icon,rec,program_no) {
         //console.log(id);
-        if ( 'undefined' != typeof name ) {
-          $('#name').val(name);
-          $('#connection').val(password);
-          $('#channel_no').val(group);
-          //$('#mc_src').val(expired_time);
+        if ( 'undefined' != typeof title ) {
+          $('#program_no').val(program_no);
+          if(rec==1)
+            $('#program_rec').val("ON");
+          else
+            $('#program_rec').val("OFF");
+          $('#ch_no').val($('#channel').val());
+          $('#program_title').val(title);
+          $('#program_descrption').val(description);
+          $('#program_icon').val(icon);
+
+          $('#starttime').val(starttime);
+          $('#stoptime').val(stoptime);
           
-          $('#edit-id').val(id);
+          //$('#edit-id').val(id);
           $('#edit-modal').modal('show')
           
         } else alert('Unknown row id.');
       }
 
       // Remove row
-      function removeRow(id) {
+      function removeRow(id,program_no) {
         if ( 'undefined' != typeof id ) {
-          confirmDialog('Are you sure you want delete the Group', function(){
+          confirmDialog('Are you sure you want delete the EPG', function(){
               //My code to delete
-            $.get('api.php?page=group_delete&id=' + id, function() {
+              var ch_no=$('#channel').val();
+            $.get('api.php?page=epg_delete&starttime=' + id +'&ch_no='+ch_no+'&id='+program_no , function() {
               $('a[data-id="row-' + id + '"]').parent().parent().remove();
             }).fail(function() { alert('Unable to fetch data, please try again later.') });
           });
