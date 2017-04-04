@@ -23,9 +23,13 @@
 		else
 			echo "<li><a href='group.php'><i class='glyphicon glyphicon-user'></i> Group</a></li>";
 
+		if($page == "egp")
+			echo "<li class='current'><a href='egp.php'><i class='glyphicon glyphicon-user'></i> EPG</a></li>";
+		else
+			echo "<li><a href='egp.php'><i class='glyphicon glyphicon-user'></i> EPG</a></li>";
+
 		?>
 		
-		<li><a href='forms.html'><i class='glyphicon glyphicon-tasks'></i> Forms</a></li>
 	</ul>
 </div>
 
