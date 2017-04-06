@@ -55,7 +55,19 @@ if($page=="login"){
 
 			echo json_encode($response);
 
-		}else if($page=="channel_more_update"){
+		}else if($page=="user_more"){
+			$id=$_GET['id'];
+			$apiurl=vsprintf("http://%s:%s/server/query_user_more?token=%s&username=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			//print_r($response);
+
+			echo json_encode($response);
+
+		}
+		else if($page=="channel_more_update"){
 			$id=$_GET['id'];
 			$sr2=$_POST['sr2'];
 			$sr3=$_POST['sr3'];
@@ -78,6 +90,14 @@ if($page=="login"){
 			//bitratetype=2 needs to add more information: &video_format=xxx&audio_format=xxx&mobilebitrate=xxx&sdbitrate=xxx&hdbitrate=xxx&preset=xxx;
 
 			$apiurl=vsprintf("http://%s:%s/server/save_channel_more?token=%s&%s",array($szezserverip,$szAPIport,$_SESSION["token"],$url));
+			$res = file_get_contents($apiurl);
+
+			echo $res;
+		}else if($page=="user_more_update"){
+			
+			$url="username=".$_POST['username']."&user2ndip=".$_POST['user2ndip']."&user3rdip=".$_POST['user3rdip']."&user4thip=".$_POST['user4thip']."&user5thip=".$_POST['user5thip']."&rating_password=".$_POST['rating_password']."&level=".$_POST['level']."&max_connection=".$_POST['maxconnection']."&paymodel=".$_POST['paymodel']."&smart_phone=".$_POST['smart_phone']."&tablet=".$_POST['tablet']."&desktop=".$_POST['desktop']."&tv=".$_POST['tv']."&first_name=".$_POST['first_name']."&last_name=".$_POST['last_name']."&address=".$_POST['address']."&city=".$_POST['city']."&zip=".$_POST['zip']."&tel=".$_POST['tel']."&email=".$_POST['email']."&user_point=".$_POST['user_point']."&flag=sfsdfsdf";
+			$apiurl=vsprintf("http://%s:%s/server/save_user_more?token=%s&%s",array($szezserverip,$szAPIport,$_SESSION["token"],$url));
+			//echo $apiurl;
 			$res = file_get_contents($apiurl);
 
 			echo $res;
@@ -177,7 +197,7 @@ if($page=="login"){
 					$res1[]=str_replace("macid=", "", $response[$i+5]);
 					
 					
-					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(\'' . $res1[0] . '\',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[3].'\',\''.$res1[4].'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(\'' . $res1[0] . '\');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(\'' . $res1[0] . '\',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[3].'\',\''.$res1[4].'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:moreRow(\'' . $res1[0] . '\');" class=""><span class="glyphicon glyphicon-edit"></span></a>&nbsp;<a href="javascript:removeRow(\'' . $res1[0] . '\');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
 					
 				}
 				

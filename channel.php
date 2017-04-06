@@ -489,6 +489,7 @@ $page="channel";
               }
               else if(data[i].search("tolerance=")==0){
                 $("#tolerance").val(data[i].replace("tolerance=", ""));
+                changeStream($("#tolerance").val());
               }
               else if(data[i].search("forward=")==0){
                 $("#forward").val(data[i].replace("forward=", ""));
@@ -497,10 +498,14 @@ $page="channel";
                 $("#bitratetype").val(data[i].replace("bitratetype=", ""));
               }
               else if(data[i].search("video_format=")==0){
-                $("#video_format").val(data[i].replace("video_format=", ""));
+                var temp=data[i].replace("video_format=", "");
+                if(temp!="")
+                  $("#video_format").val(temp);
               }
               else if(data[i].search("audio_format=")==0){
-                $("#audio_format").val(data[i].replace("audio_format=", ""));
+                var temp=data[i].replace("audio_format=", "");
+                if(temp!="")
+                  $("#audio_format").val(temp);
               }
               else if(data[i].search("mobilebitrate=")==0){
                 $("#mobilebitrate").val(data[i].replace("mobilebitrate=", ""));
@@ -512,7 +517,10 @@ $page="channel";
                 $("#hdbitrate").val(data[i].replace("hdbitrate=", ""));
               }
               else if(data[i].search("preset=")==0){
-                $("#preset").val(data[i].replace("preset=", ""));
+                var temp=data[i].replace("preset=", "");
+                
+                if(temp.trim()!="")
+                  $("#preset").val(temp);
               }
               else if(data[i].search("cacheondemand=")==0){
                 $("#cacheondemand").val(data[i].replace("cacheondemand=", ""));
@@ -552,6 +560,23 @@ $page="channel";
           $("#confirmOk").one('click', onConfirm);
           $("#confirmOk").one('click', fClose);
           $("#confirmCancel").one("click", fClose);
+        }
+        function changeStream(val1){
+          if(val1==2){
+            $("#stream1").show();
+            $("#stream2").show();
+            $("#stream3").show();
+            $("#stream4").show();
+            $("#stream5").show();
+            $("#stream6").show();
+          }else{
+            $("#stream1").hide();
+            $("#stream2").hide();
+            $("#stream3").hide();
+            $("#stream4").hide();
+            $("#stream5").hide();
+            $("#stream6").hide();
+          }
         }
     </script>
   </body>

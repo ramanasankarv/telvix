@@ -188,6 +188,172 @@ $page="user";
       </div>
     </div>
 
+
+    <div class="modal fade" id="edit-more-modal" tabindex="-1" role="dialog" aria-labelledby="edit-more-modal-label">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form class="form-horizontal" id="edit-more-form">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="edit-modal-label">Edit selected row</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-more-id" value="" class="hidden">
+                <div class="form-group">
+                <label for="firstname" class="col-sm-2 control-label">User</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly="true" class="form-control" id="username" name="username" readonly="true" placeholder="username" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">IP 2</label>
+                <div class="col-sm-10">
+                    <input type="test" class="form-control" id="user2ndip" name="user2ndip" placeholder="IP">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mobile" class="col-sm-2 control-label">IP 3</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user3rdip" name="user3rdip" placeholder="IP" >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mobile" class="col-sm-2 control-label">IP 4</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user4thip" name="user4thip" placeholder="IP" >
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="mobile" class="col-sm-2 control-label">IP 5</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user5thip" name="user5thip" placeholder="IP">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Rating Password</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="rating_password" name="rating_password" placeholder="Rating Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Level</label>
+                <div class="col-sm-10"> 
+                    <select name="level" id="level">
+                      <option value="0">User</option>
+                      <option value="1">Administrator</option>
+                      <option value="2">Super Reseller</option>
+                      <option value="3">Reseller</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Pay Model</label>
+                <div class="col-sm-10"> 
+                    <select name="paymodel" id="paymodel">
+                      <option value="Free">Free</option>
+                      <option value="Post">Post</option>
+                      <option value="Pre">Pre</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Max. Connections</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="maxconnection" name="maxconnection" placeholder="Max. Connections">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Active Connections</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="curconnection" name="curconnection" placeholder="Active Connections">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">User Point</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="user_point" name="user_point" placeholder="User Point">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Smart Phone No.</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="smart_phone" name="smart_phone" placeholder="Smart Phone">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Tablet ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tablet" name="tablet" placeholder="Tablet">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Desktop ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="desktop" name="desktop" placeholder="Desktop">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">TV ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tv" name="tv" placeholder="TV">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">First Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Last Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="TV">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">ZIP</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="zip" name="zip" placeholder="ZIP">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Tel Phone</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tel" name="tel" placeholder="Tel Phone">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+
     <!-- Video channel -->
     <div class="modal fade" id="channel-modal" tabindex="-1" role="dialog" aria-labelledby="channel-modal-label">
       <div class="modal-dialog" role="document">
@@ -259,6 +425,15 @@ $page="user";
           }).fail(function() { alert('Unable to save data, please try again later.'); });
         });
 
+        $("#edit-more-form").on("submit", function(event) {
+          event.preventDefault();
+          $.post("api.php?page=user_more_update&id=", $(this).serialize(), function(data) {
+            var obj = $.parseJSON(data);
+            $('#edit-more-modal').modal('hide')
+            //location.reload(); 
+          }).fail(function() { alert('Unable to save data, please try again later.'); });
+        });
+
         // Add new row
         $("#add-form").on("submit", function(event) {
           //console.log($(this).serialize());
@@ -275,6 +450,9 @@ $page="user";
             
           }).fail(function() { alert('Unable to save data, please try again later.'); });
         });
+
+
+        
 
       });
 
@@ -317,6 +495,86 @@ $page="user";
           $("#confirmOk").one('click', fClose);
           $("#confirmCancel").one("click", fClose);
         }
+
+        function moreRow(id){
+        $.get('api.php?page=user_more&id=' + id, function(obj) {
+            console.log(obj);    
+            var data = JSON.parse(obj);
+            console.log(data);
+            for(var i=0;i<data.length;i++){
+              console.log(data[i]);
+              if(data[i].search("username=")==0){
+                $("#username").val(data[i].replace("username=", ""));
+              }
+              else if(data[i].search("user2ndip=")==0){
+                $("#user2ndip").val(data[i].replace("user2ndip=", ""));
+              }else if(data[i].search("user3rdip=")==0){
+                $("#user3rdip").val(data[i].replace("user3rdip=", ""));
+              }
+              else if(data[i].search("user4thip=")==0){
+                $("#user4thip").val(data[i].replace("user4thip=", ""));
+              }
+              else if(data[i].search("user5thip=")==0){
+                $("#user5thip").val(data[i].replace("user5thip=", ""));
+              }
+              else if(data[i].search("rating_password=")==0){
+                $("#rating_password").val(data[i].replace("rating_password=", ""));
+              }
+              else if(data[i].search("level=")==0){
+                $("#level").val(data[i].replace("level=", ""));
+               
+              }
+              else if(data[i].search("maxconnection=")==0){
+                $("#maxconnection").val(data[i].replace("maxconnection=", ""));
+              }
+              else if(data[i].search("curconnection=")==0){
+                $("#curconnection").val(data[i].replace("curconnection=", ""));
+              }
+              else if(data[i].search("paymodel=")==0){
+                var temp=data[i].replace("paymodel=", "");
+                if(temp!="")
+                  $("#paymodel").val(temp);
+              }
+              else if(data[i].search("user_point=")==0){
+                $("#user_point").val(data[i].replace("user_point=", ""));
+              }
+              else if(data[i].search("smart_phone=")==0){
+                $("#smart_phone").val(data[i].replace("smart_phone=", ""));
+              }
+              else if(data[i].search("tablet=")==0){
+                $("#tablet").val(data[i].replace("tablet=", ""));
+              }
+              else if(data[i].search("desktop=")==0){
+                $("#desktop").val(data[i].replace("desktop=", ""));
+              }
+              else if(data[i].search("tv=")==0){
+                $("#tv").val(data[i].replace("tv=", ""));
+              }
+              else if(data[i].search("first_name=")==0){
+                $("#first_name").val(data[i].replace("first_name=", ""));
+              }
+              else if(data[i].search("last_name=")==0){
+                $("#last_name").val(data[i].replace("last_name=", ""));
+              }
+              else if(data[i].search("address=")==0){
+                $("#address").val(data[i].replace("address=", ""));
+              }
+              else if(data[i].search("city=")==0){
+                $("#city").val(data[i].replace("city=", ""));
+              }
+              else if(data[i].search("zip=")==0){
+                $("#zip").val(data[i].replace("zip=", ""));
+              }
+              else if(data[i].search("tel=")==0){
+                $("#tel").val(data[i].replace("tel=", ""));
+              }
+              else if(data[i].search("email=")==0){
+                $("#email").val(data[i].replace("email=", ""));
+              }
+            }
+            $('#edit-more-modal').modal('show');
+        }).fail(function() { alert('Unable to fetch data, please try again later.') });   
+      }
     </script>
   </body>
 </html>
