@@ -564,6 +564,9 @@ if($page=="login"){
 
 			$result=getChannel($szezserverip,$szAPIport);
 			echo json_encode($result);	
+		}else if($page=="group_list"){
+			$result=getGroup($szezserverip,$szAPIport);
+			echo json_encode($result);		
 		}		
 	}
 	else{
@@ -613,6 +616,29 @@ function getChannel($szezserverip,$szAPIport){
 		if($response[$i]!="" || $response[$i]!=0){
 			$temp['ch_no']=str_replace("CH=", "", $response[$i]);
 			$temp['ch_name']=str_replace("name=", "", $response[$i+1]);
+			
+			$res1[]=$temp;
+		}
+		
+	}
+
+	return $res1;
+}
+function getGroup($szezserverip,$szAPIport){
+	$apiurl=vsprintf("http://%s:%s/server/query_group?token=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["token"],'sdfdf'));
+	$res = file_get_contents($apiurl);
+
+	$response = split("\r\n", $res);
+	//print_r($response);
+	$res1= array();
+	$j=0;
+	for($i=0;$i<count($response);$i=$i+5){
+		//echo "sdfd";
+		$temp= array();
+		//echo $response[$i];
+		if($response[$i]!="" || $response[$i]!=0){
+			$temp['no']=str_replace("No=", "", $response[$i]);
+			$temp['name']=str_replace("name=", "", $response[$i+1]);
 			
 			$res1[]=$temp;
 		}

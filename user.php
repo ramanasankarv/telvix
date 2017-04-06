@@ -94,7 +94,10 @@ $page="user";
               <div class="form-group">
                 <label for="add-mobile" class="col-sm-2 control-label">Group</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="add-group" name="group" placeholder="Group" required>
+                    <select id="add-group" name="group" class="form-control" required>
+                    
+                  </select>
+                  
                 </div>
               </div>
               <div class="form-group">
@@ -155,7 +158,10 @@ $page="user";
               <div class="form-group">
                 <label for="mobile" class="col-sm-2 control-label">Group</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="group" name="group" placeholder="Group" required>
+                  <select id="group" name="group" class="form-control" required>
+                    
+                  </select>
+                    
                 </div>
               </div>
               <div class="form-group">
@@ -415,6 +421,17 @@ $page="user";
           "aServerSide": true,
           "sAjaxSource": "api.php?page=user"
         });
+
+        $.get("api.php?page=group_list", function(data) {
+            var obj = $.parseJSON(data);
+            for(var i=0;i<obj.length;i++){
+              console.log(obj[i]);
+              $('<option>').val(obj[i].name).text(obj[i].name).appendTo('#group');
+              $('<option>').val(obj[i].name).text(obj[i].name).appendTo('#add-group');
+            }
+           getList(); 
+            
+        }).fail(function() { alert('Unable to save data, please try again later.'); });
 
         // Save edited row
         $("#edit-form").on("submit", function(event) {
