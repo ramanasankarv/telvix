@@ -44,7 +44,45 @@ if($page=="login"){
 
 			$response = split("\r\n", $res);
 			echo json_encode($response);
-		}else if($page=="channel"){
+		}else if($page=="channel_more"){
+			$id=$_GET['id'];
+			$apiurl=vsprintf("http://%s:%s/server/query_channel_more?token=%s&ch_no=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$id));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			//print_r($response);
+
+			echo json_encode($response);
+
+		}else if($page=="channel_more_update"){
+			$id=$_GET['id'];
+			$sr2=$_POST['sr2'];
+			$sr3=$_POST['sr3'];
+			$netip=$_POST['netip'];
+			$sid=$_POST['sid'];
+			$tolerance=$_POST['tolerance'];
+			$forward=$_POST['forward'];
+			$bitratetype=$_POST['bitratetype'];
+			$cacheondemand=$_POST['cacheondemand'];
+			$catch_up_days=$_POST['catch_up_days'];
+			$epg_channel_id=$_POST['epg_channel_id'];
+			$bitratetype=$_POST['bitratetype'];
+
+
+			$url="ch_no=".$id."&sr2=".$sr2."&sr3=".$sr3."&netip=".$netip."&sid=".$sid."&tolerance=".$tolerance."&forward=".$forward."&bitratetype=".$bitratetype."&cacheondemand=".$cacheondemand."&catch_up_days=".$catch_up_days."&epg_channel_id=".$epg_channel_id."&bitratetype=".$bitratetype;
+			if($bitratetype==2){
+				$url.="&video_format=".$_POST['video_format']."&audio_format=".$_POST['audio_format']."&mobilebitrate=".$_POST['mobilebitrate']."&sdbitrate=".$_POST['sdbitrate']."&hdbitrate=".$_POST['hdbitrate']."&preset=".$_POST['preset']."";
+			}
+			//save_channel_more?token=xxx&ch_no=xxxsr2=xxx&sr3=xxx&netip=xxx&sid=xxx&tolerance=xxx&forward=xxx&bitratetype=x&cacheondemand=x&catch_up_days=xx&epg_channel_id=xxx  HTTP/1.0 \r\n\r\n
+			//bitratetype=2 needs to add more information: &video_format=xxx&audio_format=xxx&mobilebitrate=xxx&sdbitrate=xxx&hdbitrate=xxx&preset=xxx;
+
+			$apiurl=vsprintf("http://%s:%s/server/save_channel_more?token=%s&%s",array($szezserverip,$szAPIport,$_SESSION["token"],$url));
+			$res = file_get_contents($apiurl);
+
+			echo $res;
+		}
+		else if($page=="channel"){
 			$apiurl=vsprintf("http://%s:%s/server/query_channel_list?token=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["token"],'sdfdf'));
 			$res = file_get_contents($apiurl);
 
@@ -71,7 +109,7 @@ if($page=="login"){
 					$res1[]=str_replace("type=", "", $response[$i+5]);
 					$res1[]=str_replace("status=", "", $response[$i+6]);
 					//$res1[]=str_replace("bitrate=", "", $response[$i+7]);
-					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[4].'\',\''.$image.'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;<a href="javascript:void(0)" onclick="play_movie(' . $res1[0] . ',\'flv\',0,\''.$_SESSION["token"].'\',\''.$res1[2].'\');"><span class="glyphicon glyphicon-play"></span></a>'));
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:editRow(' . $res1[0] . ',\''.$res1[4].'\',\''.$image.'\',\''.$res1[5].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:moreRow(' . $res1[0] . ');" class=""><span class="glyphicon glyphicon-edit"></span></a>&nbsp;<a href="javascript:removeRow(' . $res1[0] . ');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;<a href="javascript:void(0)" onclick="play_movie(' . $res1[0] . ',\'flv\',0,\''.$_SESSION["token"].'\',\''.$res1[2].'\');"><span class="glyphicon glyphicon-play"></span></a>'));
 					
 				}
 				
