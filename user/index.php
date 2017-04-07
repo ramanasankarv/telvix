@@ -98,7 +98,11 @@ $page="index";
 
     <link href="../vendors/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
     <script src="../vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script> 
-    <script src="flowplayer-7.0.2/flowplayer.min.js"></script>
+
+    <script type="text/javascript" src="../flash_player10_1/lib/swfobject.js">
+        </script>
+        <script type="text/javascript" src="../flash_player10_1/lib/ParsedQueryString.js">
+        </script>
     
     <script type="text/javascript" language="javascript" class="init">
     var movies_count=1;
@@ -151,12 +155,58 @@ $page="index";
         }).fail(function() { alert('Unable to save data, please try again later.'); });
         }
         function playmovie(name){
-          var str='<link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css"><div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayer.swf" data-key="$512206430871778" data-ratio="0.4167"><video>';
-          str+='<source type="video/webm" src="http://5.9.101.139:8000/'+name+'?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>">';
-         str+='<source type="video/mp4"  src="http://5.9.101.139:8000/'+name+'?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>"></video></div>'; 
-          $("#video_content").html(str);
+          
           $('#movie-modal').modal('show');
+
+          var pqs = new ParsedQueryString();
+            var parameterNames = pqs.params(false);
+            var parameters = {
+                src: "http://5.9.101.139:8000/"+name+"?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>",
+                autoPlay: "false",
+                verbose: true,
+                controlBarAutoHide: "false",
+                controlBarPosition: "bottom",
+                poster: "images/poster.png"
+            };
+            
+            for (var i = 0; i < parameterNames.length; i++) {
+                var parameterName = parameterNames[i];
+                parameters[parameterName] = pqs.param(parameterName) ||
+                parameters[parameterName];
+            }
+            
+            var wmodeValue = "direct";
+            var wmodeOptions = ["direct", "opaque", "transparent", "window"];
+            if (parameters.hasOwnProperty("wmode"))
+            {
+              if (wmodeOptions.indexOf(parameters.wmode) >= 0)
+              {
+                wmodeValue = parameters.wmode;
+              }               
+              delete parameters.wmode;
+            }
+            
+            // Embed the player SWF:              
+            swfobject.embedSWF(
+        "../flash_player10_1/StrobeMediaPlayback.swf"
+        , "video_content"
+        , 640
+        , 480
+        , "10.1.0"
+        , "expressInstall.swf"
+        , parameters
+        , {
+                  allowFullScreen: "true",
+                  wmode: wmodeValue
+              }
+        , {
+                  name: "video_content"
+              }
+      );
         }
+
     </script>
+      
+        
   </body>
 </html>
