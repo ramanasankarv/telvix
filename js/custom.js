@@ -153,7 +153,7 @@ function play_channel(chno,container,dvr_on,g_token,url)
   var hostname="5.9.101.139";
   
   var httpport = "18000";
-  g_token="0.160220,4.388885";
+  //g_token="0.160220,4.388885";
   var  cgi_url;
   var d=new Date();
   var VideoWindow;
@@ -177,10 +177,11 @@ function play_channel(chno,container,dvr_on,g_token,url)
       video_path=url;
     } else
       { // VLC 
-      //video_path="http://"+hostname+":"+httpport+"/"+chno+"."+container+'?token='+g_token+':server_ip_port='+hostname+":"+httpport;
-      video_path=url;
+      video_path="http://"+hostname+":"+httpport+"/"+chno+"."+container+'?token='+g_token+':server_ip_port='+hostname+":"+httpport;
+      //video_path=url;
       }
   }
+  alert(video_path);
     g_video_path=video_path;
   // alert(video_path);
   //g_current_timestamp=0;
@@ -195,21 +196,21 @@ function play_channel(chno,container,dvr_on,g_token,url)
       str+='<object>'+
       '<param name="allowFullScreen" value="true" />'+
       '<param name="allowscriptaccess" value="always" />'+
-      '<embed src="http://'+hostname+':'+httpport+'/flash_player10_1/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="220" flashvars="src='+video_path+'&autoPlay=true">'+ 
+      '<embed src="flash_player10_1/StrobeMediaPlayback.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="220" flashvars="src='+video_path+'&autoPlay=true">'+ 
       '</embed>'+
       '</object>';  
     } else 
     {
       str+='<param name="allowFullScreen" value="true"></param>'+
       '<param name="allowscriptaccess" value="always"></param>'+
-      '<embed src="http://'+hostname+':'+httpport+'/flash_player10_1/StrobeMediaPlayback.swf" autoplay="yes" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="220" flashvars="src='+video_path+'&autoPlay=true">';
+      '<embed src="flash_player10_1/StrobeMediaPlayback.swf" autoplay="yes" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="220" flashvars="src='+video_path+'&autoPlay=true">';
     
   
     }
   }else if (browser_name.search("Safari")==0)
   { // APPLIE
     //alert(video_path);
-    str+='<video src="http://trtcanlitv-lh.akamaihd.net/i/TRT1HD_1@181842/index_1500_av-b.m3u8?sd=10&rebase=on" controls autoplay>';
+    str+='<video src="'+video_path+'" controls autoplay>';
       //alert(str);
 
   }else if (container.search("ch")>=0) 
@@ -259,10 +260,10 @@ function play_movie(movie_no,container,dvr_on,g_token,url)
   var str;
   var pos1;
   var browser_name;
-   g_item_name=document.getElementById(movie_src_id);
-   movie_src = g_item_name.value;
-   g_item_name=document.getElementById(movie_src_name);
-   movie_name = g_item_name.value;
+   // g_item_name=document.getElementById(movie_src_id);
+   // movie_src = g_item_name.value;
+   // g_item_name=document.getElementById(movie_src_name);
+   // movie_name = g_item_name.value;
  
   var httpport = 18000;
   var hostname = "http://5.9.101.139/";

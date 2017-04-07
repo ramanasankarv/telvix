@@ -1,6 +1,6 @@
 <?php
-if(isset($_SESSION["token"])){
-  if($_SESSION["token"]<0){
+if(isset($_SESSION["playertoken"])){
+  if($_SESSION["playertoken"]<0){
     $str='<a href="#">Login</a>';
   }else
   {
@@ -33,12 +33,3 @@ else{
         </div>
      </div>
 </div>
-
-<script type="text/javascript">
-  function logout(){
-    $.get("api.php?page=logout", function(data) {
-            location.href="login.html"; 
-            
-        }).fail(function() { alert('Unable to save data, please try again later.'); });
-  }
-</script>
