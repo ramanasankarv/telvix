@@ -9,7 +9,15 @@
 			echo "<li class='current'><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
 		else
 			echo "<li><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
-		
+		if($page == "group")
+			echo "<li class='current'><a href='group.php'><i class='glyphicon glyphicon-user'></i> Group</a></li>";
+		else
+			echo "<li><a href='group.php'><i class='glyphicon glyphicon-user'></i> Group</a></li>";
+
+		if($page == "egp")
+			echo "<li class='current'><a href='egp.php'><i class='glyphicon glyphicon-user'></i> EPG</a></li>";
+		else
+			echo "<li><a href='egp.php'><i class='glyphicon glyphicon-user'></i> EPG</a></li>";
 
 		?>
 		

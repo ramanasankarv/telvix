@@ -34,7 +34,14 @@ if($page=="login"){
 	echo json_encode($result);
 }
 else{
-	if($page=="category_list"){
+	if($page=="logout"){
+			$apiurl=vsprintf("http://%s:%s/token/destroytoken?token=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"]));
+			$szuptime = file_get_contents($apiurl);
+			$result["code"]=200;
+			$result["status"]="success";
+			echo json_encode($result);
+	}
+	elseif($page=="category_list"){
 		$apiurl=vsprintf("http://%s:%s/server/get_movie_category?token=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"]));
 		//echo $apiurl;
 		$szreponse = file_get_contents($apiurl);

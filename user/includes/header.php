@@ -33,3 +33,11 @@ else{
         </div>
      </div>
 </div>
+<script type="text/javascript">
+  function logout(){
+    $.get("api.php?page=logout", function(data) {
+            location.href="login.html"; 
+            
+        }).fail(function() { alert('Unable to save data, please try again later.'); });
+  }
+</script>
