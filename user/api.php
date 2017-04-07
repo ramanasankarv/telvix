@@ -65,6 +65,30 @@ else{
 		echo json_encode($res1);
 		
 	}
+	elseif($page=="category_channel"){
+		$apiurl=vsprintf("http://%s:%s/server/get_channel_category?token=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"]));
+		//echo $apiurl;
+		$szreponse = file_get_contents($apiurl);
+
+		$response = split("\r\n", $szreponse);
+		
+		$j=0;
+		$res1= array();
+
+		for($i=0;$i<count($response);$i=$i+1){
+		//echo "sdfd";
+		
+		//echo $response[$i];
+			if($response[$i]!="" || $response[$i]!=0){
+				$res1[$i]=str_replace("category=", "", $response[$i]);
+			
+			}
+		
+		}
+
+		echo json_encode($res1);
+		
+	}
 	else if($page=="movies"){
 		if(!isset($_GET['category']) || $_GET['category']==""){
 			$apiurl=vsprintf("http://%s:%s/server/query_movie_list?token=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"]));
@@ -122,6 +146,75 @@ else{
 					}
 					$res1[$j]["status"]=str_replace("status=", "", $response[$i+3]);
 					$j++;
+				}
+				
+			}
+			echo json_encode($res1);
+
+		}
+		
+	}
+	else if($page=="channel"){
+		if(!isset($_GET['category']) || $_GET['category']==""){
+			$apiurl=vsprintf("http://%s:%s/server/query_channel_list?token=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"]));
+			//echo $apiurl;
+			$szreponse = file_get_contents($apiurl);
+
+			$response = split("\r\n", $szreponse);
+
+			$j=0;
+			$res1= array();
+			for($i=0;$i<count($response);$i=$i+8){
+				//echo "sdfd";
+				
+				//echo $response[$i];
+				if($response[$i]!="" || $response[$i]!=0){
+					$res1[$j]["CH"]=str_replace("CH=", "", $response[$i]);
+					$res1[$j]["name"]=str_replace("name=", "", $response[$i+1]);
+					$image =str_replace("icon=", "", $response[$i+3]);
+					if($image!=""){
+						$res1[$j]["image"]=$image;	
+					}
+					else{
+						$res1[$j]["image"]='';	
+					}
+					//$res1[]=str_replace("img=", "", $response[$i+3]);
+					$res1[$j]["category"]=str_replace("category=", "", $response[$i+4]);
+					$res1[$j]["status"]=str_replace("status=", "", $response[$i+6]);
+					$j++;
+
+					
+				}
+				
+			}
+			echo json_encode($res1);
+		}else{
+			$apiurl=vsprintf("http://%s:%s/server/get_channel_list?token=%s&category=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"],$_GET['category']));
+
+			$szreponse = file_get_contents($apiurl);
+
+			$response = split("\r\n", $szreponse);
+
+			$j=0;
+			$res1= array();
+			for($i=0;$i<count($response);$i=$i+7){
+				//echo "sdfd";
+				
+				//echo $response[$i];
+				if($response[$i]!="" || $response[$i]!=0){
+					$res1[$j]["CH"]=str_replace("CH=", "", $response[$i]);
+					$res1[$j]["name"]=str_replace("name=", "", $response[$i+1]);
+					$image =str_replace("icon=", "", $response[$i+3]);
+					if($image!=""){
+						$res1[$j]["image"]=$image;	
+					}
+					else{
+						$res1[$j]["image"]='';	
+					}
+					$res1[$j]["status"]=str_replace("status=", "", $response[$i+6]);
+					$j++;
+
+					
 				}
 				
 			}

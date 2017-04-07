@@ -7,7 +7,7 @@ if(isset($_SESSION["playertoken"])){
 else{
 	header('Location: login.html');
 }
-$page="index";
+$page="channel";
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,7 +114,7 @@ $page="index";
 
         
 
-        $.get("api.php?page=category_list", function(data) {
+        $.get("api.php?page=category_channel", function(data) {
             var obj = $.parseJSON(data);
             for(var i=0;i<obj.length;i++){
               console.log(obj[i]);
@@ -138,7 +138,7 @@ $page="index";
         function getList(){
           var cat=$("#category").val();
           
-          $.get("api.php?page=movies&category="+cat, function(data) {
+          $.get("api.php?page=channel&category="+cat, function(data) {
             var obj = $.parseJSON(data);
             var str="";
             for(var i=0;i<obj.length;i++){
@@ -161,7 +161,7 @@ $page="index";
           var pqs = new ParsedQueryString();
             var parameterNames = pqs.params(false);
             var parameters = {
-                src: "http://5.9.101.139:8000/"+name+"?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>",
+                src: "http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>",
                 autoPlay: "true",
                 verbose: true,
                 controlBarAutoHide: "false",
