@@ -151,7 +151,7 @@ $page="index";
         }).fail(function() { alert('Unable to save data, please try again later.'); });
         }
         function playmovie(name){
-          var str='<div class="flowplayer" data-swf="flowplayer.swf" data-key="$512206430871778" data-ratio="0.4167"><video>';
+          var str='<link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css"><div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayer.swf" data-key="$512206430871778" data-ratio="0.4167"><video>';
           str+='<source type="video/webm" src="http://5.9.101.139:8000/'+name+'?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>">';
          str+='<source type="video/mp4"  src="http://5.9.101.139:8000/'+name+'?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>"></video></div>'; 
           $("#video_content").html(str);
