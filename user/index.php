@@ -59,37 +59,10 @@ $page="index";
         <div class="col-md-9">
            	<div class="row" id="videos">
 			  		
-					<div class="col-md-4 panel-warning">
-						<div class="content-box-header panel-heading">
-		  					<div class="panel-title ">Disk Usage</div>
-			  			</div>
-			  			<div class="content-box-large box-with-header">
-			  				<div id="gauge-container">
-                				<div id="gauge2"></div>
-            				</div>
-			  			</div>
-			  		</div>
-			  		<div class="col-md-4  panel-warning">
-			  			<div class="content-box-header panel-heading">
-		  					<div class="panel-title ">Load</div>
-			  			</div>
-			  			<div class="content-box-large box-with-header">
-			  				<div id="gauge-container">
-                				<div id="gauge3"></div>
-            				</div>
-			  			</div>
-			  		</div>	
+					
+			  		
 
-            <div class="col-md-4  panel-warning">
-              <div class="content-box-header panel-heading">
-                <div class="panel-title ">Load</div>
-              </div>
-              <div class="content-box-large box-with-header">
-                <div id="gauge-container">
-                        <div id="gauge3"></div>
-                    </div>
-              </div>
-            </div>    	
+               	
 			  	</div>
           
         </div>
