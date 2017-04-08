@@ -1,32 +1,37 @@
+
 <!doctype html>
 
+<html>
+
 <head>
+   <meta charset="utf-8">
 
-   <!-- player skin -->
-   <link rel="stylesheet" href="skin/skin.css">
+   <!-- Flowplayer library -->
+<script src="//releases.flowplayer.org/7.0.2/flowplayer.min.js"></script>
+<!-- Flowplayer hlsjs engine -->
+<script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
 
-   <!-- site specific styling -->
-   <style>
-   body { font: 12px "Myriad Pro", "Lucida Grande", sans-serif; text-align: center; padding-top: 5%; }
-   .flowplayer { width: 80%; }
-   </style>
 
-   <!-- for video tag based installs flowplayer depends on jQuery 1.7.2+ -->
-   <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-
-   <!-- include flowplayer -->
-   <script src="flowplayer.min.js"></script>
 
 </head>
+<style type="text/css">
+   .flowplayer {
+  background-color: #00abcd;
+}
+.flowplayer .fp-color-play {
+  fill: #eee;
+}
+</style>
 
 <body>
-
-   <!-- the player -->
-   <div class="flowplayer" data-swf="flowplayerhls.swf" data-ratio="0.4167">
-      <video>
-         <source type="video/webm" src="http://5.9.101.139:8000/TV1.m3u8?u=ravi:p=123456">
-         <source type="video/mp4" src="http://5.9.101.139:8000/TV1.m3u8?u=ravi:p=123456">
-      </video>
-   </div>
-
+<div data-live="true" data-ratio="0.5625" class="flowplayer">
+ 
+   <video data-title="Live stream">
+<source type="application/x-mpegurl"
+        src="http://ravi:123456@5.9.101.139:8000/ETV%20Telengana.m3u8">
+   </video>
+ 
+</div>   
 </body>
+
+</html>

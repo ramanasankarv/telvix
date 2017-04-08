@@ -99,10 +99,9 @@ $page="channel";
     <link href="../vendors/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
     <script src="../vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script> 
 
-    <script type="text/javascript" src="../flash_player10_1/lib/swfobject.js">
-        </script>
-        <script type="text/javascript" src="../flash_player10_1/lib/ParsedQueryString.js">
-        </script>
+    <script src="//releases.flowplayer.org/7.0.2/flowplayer.min.js"></script>
+<!-- Flowplayer hlsjs engine -->
+<script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
     
     <script type="text/javascript" language="javascript" class="init">
     var movies_count=1;
@@ -157,52 +156,11 @@ $page="channel";
         function playmovie(name){
           
           $('#movie-modal').modal('show');
-
-          var pqs = new ParsedQueryString();
-            var parameterNames = pqs.params(false);
-            var parameters = {
-                src: "http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>",
-                autoPlay: "true",
-                verbose: true,
-                controlBarAutoHide: "false",
-                controlBarPosition: "bottom",
-                poster: "images/poster.png"
-            };
-            
-            for (var i = 0; i < parameterNames.length; i++) {
-                var parameterName = parameterNames[i];
-                parameters[parameterName] = pqs.param(parameterName) ||
-                parameters[parameterName];
-            }
-            
-            var wmodeValue = "direct";
-            var wmodeOptions = ["direct", "opaque", "transparent", "window"];
-            if (parameters.hasOwnProperty("wmode"))
-            {
-              if (wmodeOptions.indexOf(parameters.wmode) >= 0)
-              {
-                wmodeValue = parameters.wmode;
-              }               
-              delete parameters.wmode;
-            }
-            
-            // Embed the player SWF:              
-            swfobject.embedSWF(
-        "../flash_player10_1/StrobeMediaPlayback.swf"
-        , "video_content"
-        , 640
-        , 480
-        , "10.1.0"
-        , "expressInstall.swf"
-        , parameters
-        , {
-                  allowFullScreen: "true",
-                  wmode: wmodeValue
-              }
-        , {
-                  name: "video_content"
-              }
-      );
+          var url="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/"+name+".m3u8?";
+          var str='<div data-live="true" data-ratio="0.5625" class="flowplayer">';
+          str+='<video data-title="Live stream">';
+          str+='<source type="application/x-mpegurl" src="'+url+'"></video></div>';
+          $('#video_content').html(str);
         }
 
     </script>
