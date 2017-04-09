@@ -155,13 +155,15 @@ $page="channel";
         }
         function playmovie(name){
           
-          $('#movie-modal').modal('show');
-          var url="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/"+name+".m3u8?";
-          var str='<div data-live="true" data-ratio="0.5625" class="flowplayer">';
-          str+='<video data-title="Live stream">';
-          str+='<source type="application/x-mpegurl" src="'+url+'"></video></div>';
-          $('#video_content').html(str);
+          //$('#movie-modal').modal('show');
+          open_windows("http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>");
+          
         }
+        function open_windows(iURL)
+{
+window.open(iURL);
+}
+
 
     </script>
       
