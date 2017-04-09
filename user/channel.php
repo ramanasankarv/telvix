@@ -28,7 +28,7 @@ $page="channel";
     <![endif]-->
     <style type="text/css">
       .modal { position: fixed; top:30%; }
-      .modal-dialog{width:50%;height: 40%;margin:auto;}
+      .modal-dialog{width:50%;margin:auto;}
       .modal-content {
     
     background-color: transparent !important;
