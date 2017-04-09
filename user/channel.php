@@ -26,6 +26,17 @@ $page="channel";
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+      .modal { position: fixed; top:30%; }
+      .modal-content {
+    
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    
+}
+    </style>
   </head>
   <body>
     <?php include('includes/header.php');?>
@@ -99,9 +110,8 @@ $page="channel";
     <link href="../vendors/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
     <script src="../vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script> 
 
-    <script src="//releases.flowplayer.org/7.0.2/flowplayer.min.js"></script>
-<!-- Flowplayer hlsjs engine -->
-<script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
+    
+    <script src="flowplayer-7.0.2/flowplayer.min.js"></script>
     
     <script type="text/javascript" language="javascript" class="init">
     var movies_count=1;
@@ -155,8 +165,15 @@ $page="channel";
         }
         function playmovie(name){
           
-          //$('#movie-modal').modal('show');
-          open_windows("http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>");
+          var str='<link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css"><div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.4167"><video >';
+          str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
+            $('#video_content').html(str);
+            $('.flowplayer').flowplayer();
+
+          $('#movie-modal').modal('show');
+          
+
+          //open_windows("http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>");
           
         }
         function open_windows(iURL)
