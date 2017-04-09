@@ -19,6 +19,7 @@ $page="channel";
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="../css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css">
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -173,7 +174,7 @@ $page="channel";
         }
         function playmovie(name){
           
-          var str='<link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css"><div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.5625"><video >';
+          var str='<div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.5625"><video >';
           str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
             $('#video_content').html(str);
             $('.flowplayer').flowplayer();
