@@ -27,6 +27,17 @@ $page="index";
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
+  <style type="text/css">
+      .modal { position: fixed; top:30%; }
+      .modal-content {
+    
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    
+}
+    </style>
   <body>
     <?php include('includes/header.php');?>
     <div class="page-content">

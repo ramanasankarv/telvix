@@ -28,13 +28,21 @@ $page="channel";
     <![endif]-->
     <style type="text/css">
       .modal { position: fixed; top:30%; }
+      .modal-dialog{width:50%;height: 40%;margin:auto;}
       .modal-content {
     
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
+
     
+}
+.flowplayer {
+  background-color: #00abcd;
+}
+.flowplayer .fp-color-play {
+  fill: #eee;
 }
     </style>
   </head>
@@ -165,7 +173,7 @@ $page="channel";
         }
         function playmovie(name){
           
-          var str='<link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css"><div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.4167"><video >';
+          var str='<link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css"><div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.5625"><video >';
           str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
             $('#video_content').html(str);
             $('.flowplayer').flowplayer();
