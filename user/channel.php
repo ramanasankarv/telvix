@@ -28,7 +28,7 @@ $page="channel";
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-      .modal { position: fixed; top:30%; }
+      .modal { position: fixed; top:15%; }
       .modal-dialog{width:50%;margin:auto;}
       .modal-content {
     
@@ -40,7 +40,7 @@ $page="channel";
     
 }
 .flowplayer {
-  background-color: #00abcd;
+  /*background-color: #00abcd;*/
 }
 .flowplayer .fp-color-play {
   fill: #eee;
@@ -174,7 +174,7 @@ $page="channel";
         }
         function playmovie(name){
           
-          var str='<div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.5625"><video autoplay>';
+          var str='<div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.8025"><video autoplay>';
           str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
             $('#video_content').html(str);
             $('.flowplayer').flowplayer();
