@@ -14,7 +14,7 @@ $page="channel";
   <head>
     <title>Telvix TV - Player</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
+    
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
@@ -103,21 +103,16 @@ $page="channel";
     
 
 
-    <link href="../vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
      <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../vendors/datatables/js/jquery.dataTables.min.js"></script>
-
-    <script src="../vendors/datatables/dataTables.bootstrap.js"></script>
-
+    
+    
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/custom.js"></script>
 
-    <link href="../vendors/bootstrap-datetimepicker/datetimepicker.css" rel="stylesheet">
-    <script src="../vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script> 
+    
 
     
     <script src="flowplayer-7.0.2/flowplayer.min.js"></script>
