@@ -28,8 +28,8 @@ $page="channel";
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-      .modal { position: fixed; top:15%; }
-      .modal-dialog{width:50%;margin:auto;}
+      .modal { position: fixed; top:20%; }
+      .modal-dialog{width:35%;margin:auto;}
       .modal-content {
     
     background-color: transparent !important;
@@ -169,10 +169,10 @@ $page="channel";
         }
         function playmovie(name){
           
-          var str='<div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-key="$512206430871778" data-ratio="0.5525"><video autoplay>';
+          var str='<div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-qualities="160p,260p,530p,800p" data-default-quality="260p" data-analytics="UA-27182341-1" data-aspect-ratio="4:3" data-key="$512206430871778"><video autoplay>';
           str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
             $('#video_content').html(str);
-            $('.flowplayer').flowplayer();
+            $('.flowplayer').flowplayer({clip: {qualities: ["160p", "260p", "530p", "800p"]}});
 
           $('#movie-modal').modal('show');
           
