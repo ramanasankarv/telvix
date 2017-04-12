@@ -652,3 +652,5 @@ body {
       border-radius:10px;
    }  
 }
+
+.error{border-color: #a94442  !important;}

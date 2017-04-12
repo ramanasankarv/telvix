@@ -196,12 +196,41 @@ else{
 			//die();
 			if(is_null($output))
 			{
-				$output=array();
+				$output=array(array("No records"));
 				echo json_encode($output);
 			}else{
 				echo json_encode($output);
 			}
 
+		}else if($page=="group"){
+			$apiurl=vsprintf("http://%s:%s/server/query_group?token=%s&flag=%s",array($szezserverip,$szAPIport,$_SESSION["playertoken"],'sdfdf'));
+			//die($apiurl);
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			//print_r($response);
+			
+			$j=0;
+			for($i=0;$i<count($response);$i=$i+5){
+				//echo "sdfd";
+				$res1= array();
+				//echo $response[$i];
+				if($response[$i]!="" || $response[$i]!=0){
+					$res1[]=str_replace("No=", "", $response[$i]);
+					$res1[]=str_replace("name=", "", $response[$i+1]);
+					$res1[]=str_replace("connection=", "", $response[$i+2]);
+					$res1[] =str_replace("src=", "", $response[$i+3]);
+					
+					$res1[]=str_replace("mc_src=", "", $response[$i+4]);
+					
+					
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[1] . '" href="javascript:editRow(\'' . $res1[0] . '\',\''.$res1[1].'\',\''.$res1[2].'\',\''.$res1[3].'\',\''.$res1[4].'\');" class=""><span class="glyphicon glyphicon-pencil"></a>&nbsp;<a href="javascript:removeRow(\'' . $res1[1] . '\');" class="" style="color:red;"><span class="glyphicon glyphicon-trash"></span></a>'));
+					
+				}
+				
+			}
+			//die();
+			echo json_encode($output);
 		}
 	else if($page=="channel"){
 		if(!isset($_GET['category']) || $_GET['category']==""){

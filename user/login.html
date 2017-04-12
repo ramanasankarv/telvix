@@ -63,6 +63,11 @@
     function removecss(id){
     	$('#'+id).removeClass('error');	
     }
+    $('input').keypress(function (e) {
+      if (e.which == 13) {
+        login();
+      }
+    });
     function login(){
     	var error=false;
     	var userid=$('#userid').val();
