@@ -148,9 +148,10 @@ $page="index";
 			  	
 			</div>
     	</div>
+    	<?php include('includes/footer.php');?>
     </div>
 
-    <?php include('includes/footer.php');?>
+    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
