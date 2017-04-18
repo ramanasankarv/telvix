@@ -9,6 +9,11 @@
 			echo "<li class='current'><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
 		else
 			echo "<li><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
+		if($page == "statistics")
+			echo "<li class='current'><a href='statistics.php'><i class='glyphicon glyphicon-hd-video'></i> Statistics</a></li>";
+		else
+			echo "<li><a href='statistics.php'><i class='glyphicon glyphicon-hd-video'></i> Statistics</a></li>";
+		
 		if($page == "movie")
 			echo "<li class='current'><a href='movie.php'><i class='glyphicon glyphicon-facetime-video'></i> Movie</a></li>";
 		else

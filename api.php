@@ -66,6 +66,57 @@ if($page=="login"){
 
 			echo json_encode($response);
 
+		}else if($page=="channel_statistics"){
+			
+			$apiurl=vsprintf("http://%s:%s/server/get_channel_statistics?token=%s",array($szezserverip,$szAPIport,$_SESSION["token"]));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+			//print_r($response);
+			
+			$j=0;
+			for($i=0;$i<count($response);$i=$i+6){
+				//echo "sdfd";
+				$res1= array();
+				//echo $response[$i];
+				if($response[$i]!="" || $response[$i]!=0){
+					$res1[]=str_replace("CH=", "", $response[$i]);
+					$res1[]=str_replace("name=", "", $response[$i+1]);
+					$res1[]=str_replace("Watched_No=", "", $response[$i+2]);
+					$res1[] =str_replace("Active_No=", "", $response[$i+3]);
+					
+					$res1[]=str_replace("Uptime=", "", $response[$i+4]);
+					$res1[]=str_replace("status=", "", $response[$i+5]);
+					
+					$output['aaData'][] = array_merge($res1, array('<a data-id="row-' . $res1[0] . '" href="javascript:refresh_id(' . $res1[0] . ');" class=""><span class="glyphicon glyphicon-refresh"></a>&nbsp;'));
+					
+				}
+				
+			}
+			//die();
+			echo json_encode($output);
+		}else if($page=="channel_refresh"){
+			$ch_no=$_GET['ch_no'];
+			$apiurl=vsprintf("http://%s:%s/server/refresh_a_channel?token=%s&ch_no=%s",array($szezserverip,$szAPIport,$_SESSION["token"],$ch_no));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+
+			echo json_encode($response);
+
+		}
+		else if($page=="channel_refresh_all"){
+			$ch_no=$_GET['ch_no'];
+			$apiurl=vsprintf("http://%s:%s/server/refresh_channel?token=%s",array($szezserverip,$szAPIport,$_SESSION["token"]));
+			//echo $apiurl;
+			$res = file_get_contents($apiurl);
+
+			$response = split("\r\n", $res);
+				
+			echo json_encode($response);
+
 		}
 		else if($page=="channel_more_update"){
 			$id=$_GET['id'];
@@ -521,7 +572,7 @@ if($page=="login"){
 			//die();
 			if(is_null($output))
 			{
-				$output=array();
+				$output=array(array('No Records'));
 				echo json_encode($output);
 			}else{
 				echo json_encode($output);
