@@ -4703,8 +4703,8 @@
 		function _fnLog( oSettings, iLevel, sMesg )
 		{
 			var sAlert = (oSettings===null) ?
-				"DataTables warning: "+sMesg :
-				"DataTables warning (table id = '"+oSettings.sTableId+"'): "+sMesg;
+				"No Records : " :
+				"No Records ";
 			
 			if ( iLevel === 0 )
 			{
