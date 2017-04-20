@@ -284,7 +284,7 @@ $page="egp";
     <!-- Include all compiled plugins (below), or include individual files as needed -->
      <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="vendors/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatables/js/jquery.dataTables.js"></script>
 
     <script src="vendors/datatables/dataTables.bootstrap.js"></script>
 
