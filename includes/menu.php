@@ -10,9 +10,9 @@
 		else
 			echo "<li><a href='channel.php'><i class='glyphicon glyphicon-hd-video'></i> Channel</a></li>";
 		if($page == "statistics")
-			echo "<li class='current'><a href='statistics.php'><i class='glyphicon glyphicon-hd-video'></i> Statistics</a></li>";
+			echo "<li class='current'><a href='statistics.php'><i class='glyphicon glyphicon-stats'></i> Statistics</a></li>";
 		else
-			echo "<li><a href='statistics.php'><i class='glyphicon glyphicon-hd-video'></i> Statistics</a></li>";
+			echo "<li><a href='statistics.php'><i class='glyphicon glyphicon-stats'></i> Statistics</a></li>";
 		
 		if($page == "movie")
 			echo "<li class='current'><a href='movie.php'><i class='glyphicon glyphicon-facetime-video'></i> Movie</a></li>";
@@ -29,9 +29,9 @@
 			echo "<li><a href='group.php'><i class='glyphicon glyphicon-user'></i> Group</a></li>";
 
 		if($page == "egp")
-			echo "<li class='current'><a href='egp.php'><i class='glyphicon glyphicon-user'></i> EPG</a></li>";
+			echo "<li class='current'><a href='egp.php'><i class='glyphicon glyphicon-record'></i> EPG</a></li>";
 		else
-			echo "<li><a href='egp.php'><i class='glyphicon glyphicon-user'></i> EPG</a></li>";
+			echo "<li><a href='egp.php'><i class='glyphicon glyphicon-record'></i> EPG</a></li>";
 
 		?>
 		
