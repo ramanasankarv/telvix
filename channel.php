@@ -26,6 +26,10 @@ $page="channel";
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+      table tr td{word-wrap: break-word !important;}
+      .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:7px  !important;word-wrap: break-word !important;}
+    </style>
   </head>
   <body>
     <?php include('includes/header.php');?>
