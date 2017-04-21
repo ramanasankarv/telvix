@@ -137,7 +137,8 @@ $page="index";
 			  	<div class="row">
 			  		<div class="col-md-12 panel-warning">
 			  			<div class="content-box-header panel-heading">
-		  					<div class="panel-title ">Bandwidth</div>
+		  					<div class="panel-title ">Bandwidth</div> 
+		  					<div class="panel-options">chart updates every 30 secs</div>
 			  			</div>
 			  			<div class="content-box-large box-with-header">
 			  				<div id="chartContainer" style="height: 300px; width: 100%;">
@@ -207,7 +208,7 @@ $page="index";
 				fontColor: "dimGrey"
 			},
 			axisX: {
-				title: "chart updates every 30 secs"
+				title: ""
 			},
 			axisY:{
 				prefix: '',
