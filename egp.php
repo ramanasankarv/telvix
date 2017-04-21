@@ -156,15 +156,91 @@ $page="egp";
               </div>
 
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Start Time</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Start Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-starttime" name="starttime" placeholder="Start Time" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Stop Time</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Start Time</label>
+                <div class="col-sm-10">
+                    <select id="add-time_hr" name="time_hr">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    </select>
+                    :
+                    <select id="add-time_min" name="time_min">
+                      <option value="00">00</option>
+                      <option value="15">15</option>
+                      <option value="30">30</option>
+                      <option value="45">45</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Stop Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="add-stoptime" name="stoptime" placeholder="Stop Time" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Stop Time</label>
+                <div class="col-sm-10">
+                    <select id="add-time_ehr" name="time_ehr">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    </select>
+                    :
+                    <select id="add-time_emin" name="time_emin">
+                      <option value="00">00</option>
+                      <option value="15">15</option>
+                      <option value="30">30</option>
+                      <option value="45">45</option>
+                    </select>
                 </div>
               </div>
 
@@ -222,18 +298,93 @@ $page="egp";
               </div>
 
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Start Time</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Start Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="starttime" name="starttime" placeholder="Start Time" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="add-mobile" class="col-sm-2 control-label">Stop Time</label>
+                <label for="add-mobile" class="col-sm-2 control-label">Start Time</label>
+                <div class="col-sm-10">
+                    <select id="time_hr" name="time_hr">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    </select>
+                    :
+                    <select id="time_min" name="time_min">
+                      <option value="00">00</option>
+                      <option value="15">15</option>
+                      <option value="30">30</option>
+                      <option value="45">45</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Stop Date</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="stoptime" name="stoptime" placeholder="Stop Time" required>
                 </div>
               </div>
-
+              <div class="form-group">
+                <label for="add-mobile" class="col-sm-2 control-label">Stop Time</label>
+                <div class="col-sm-10">
+                    <select id="time_ehr" name="time_ehr">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    </select>
+                    :
+                    <select id="time_emin" name="time_emin">
+                      <option value="00">00</option>
+                      <option value="15">15</option>
+                      <option value="30">30</option>
+                      <option value="45">45</option>
+                    </select>
+                </div>
+              </div>
               <div class="form-group">
                 <label for="add-mobile" class="col-sm-2 control-label">program_rec</label>
                 <div class="col-sm-10">
@@ -299,18 +450,23 @@ $page="egp";
       $(document).ready(function() {
 
         $(function () {
-          $('#add-starttime').datetimepicker({
-            format: 'yyyy/mm/d HH:ii:ss'
+          $('#add-starttime').datepicker({
+            dateFormat: 'yy/mm/dd',
+            minDate: 0
           });
-          $('#add-stoptime').datetimepicker({
-            format: 'yyyy/mm/d HH:ii:ss'
+          $('#add-stoptime').datepicker({
+            dateFormat: 'yy/mm/dd',
+            minDate: 0
           });
-          $('#starttime').datetimepicker({
-            format: 'yyyy/mm/d HH:ii:ss'
+          $('#starttime').datepicker({
+            dateFormat: 'yy/mm/dd',
+            minDate: 0
           });
-          $('#stoptime').datetimepicker({
-            format: 'yyyy/mm/d HH:ii:ss'
+          $('#stoptime').datepicker({
+            dateFormat: 'yy/mm/dd',
+            minDate: 0
           });
+          
         });
         // ATW
         if ( top.location.href != location.href ) top.location.href = location.href;
@@ -369,9 +525,19 @@ $page="egp";
           $('#program_title').val(title);
           $('#program_descrption').val(description);
           $('#program_icon').val(icon);
+          var datetime=starttime.split(' ');
+          $('#starttime').val(datetime[0]);
+          var sttim= datetime[1];
+          var st_time=sttim.split(':');
+          $("#time_hr").val(st_time[0]);
+          $("#time_min").val(st_time[1]);
 
-          $('#starttime').val(starttime);
-          $('#stoptime').val(stoptime);
+          var todatetime=stoptime.split(' ');
+          $('#stoptime').val(todatetime[0]);
+          var totim= todatetime[1];
+          var to_time=totim.split(':');
+          $("#time_ehr").val(to_time[0]);
+          $("#time_emin").val(to_time[1]);
           
           //$('#edit-id').val(id);
           $('#edit-modal').modal('show')

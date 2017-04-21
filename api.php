@@ -544,7 +544,6 @@ if($page=="login"){
 			$res = file_get_contents($apiurl);
 
 			$response = split("\r\n", $res);
-			//print_r($response);
 			
 			$j=0;
 			for($i=0;$i<count($response);$i=$i+6){
@@ -582,8 +581,17 @@ if($page=="login"){
 		else if($page=="epg_add"){
 			$channel=$_POST['ch_no'];
 			$program_no=$_POST['program_no'];
-			$starttime=$_POST['starttime'];
-			$stoptime=$_POST['stoptime'];
+			$startdate=$_POST['starttime'];
+
+			$starthr=$_POST['time_hr'];
+			$startmin=$_POST['time_min'];
+			$starttime=$startdate." ".$starthr.":".$startmin.":00";
+
+			$stopdate=$_POST['stoptime'];
+			$stophr=$_POST['time_ehr'];
+			$stopmin=$_POST['time_emin'];
+			$stoptime=$stopdate." ".$stophr.":".$stopmin.":00";
+
 			$program_title=$_POST['program_title'];
 			$program_descrption=$_POST['program_descrption'];
 			$program_icon=$_POST['program_icon'];
@@ -598,8 +606,17 @@ if($page=="login"){
 		else if($page=="epg_update"){
 			$channel=$_POST['ch_no'];
 			$program_no=$_POST['program_no'];
-			$starttime=$_POST['starttime'];
-			$stoptime=$_POST['stoptime'];
+			$startdate=$_POST['starttime'];
+
+			$starthr=$_POST['time_hr'];
+			$startmin=$_POST['time_min'];
+			$starttime=$startdate." ".$starthr.":".$startmin.":00";
+
+			$stopdate=$_POST['stoptime'];
+			$stophr=$_POST['time_ehr'];
+			$stopmin=$_POST['time_emin'];
+			$stoptime=$stopdate." ".$stophr.":".$stopmin.":00";
+			
 			$program_title=$_POST['program_title'];
 			$program_descrption=$_POST['program_descrption'];
 			$program_icon=$_POST['program_icon'];

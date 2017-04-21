@@ -406,10 +406,12 @@ $page="user";
 
         $(function () {
           $('#add-expired_time').datepicker({
-            format: 'm/d/yyyy'
+            dateFormat: 'mm/dd/yy',
+            minDate: 0
           });
           $('#expired_time').datepicker({
-            format: 'm/d/yyyy'
+            dateFormat: 'mm/dd/yy',
+            minDate: 0
           });
         });
         // ATW
