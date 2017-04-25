@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Creative - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="flowplayer-7.0.2/skin/skin.css">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    .flowplayer {
+  /*background-color: #00abcd;*/
+}
+.flowplayer .fp-color-play {
+  fill: #eee;
+}
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    #mainNav {border-bottom: 1px solid;}
+    #navbarmenu ul li a{font-size: 24px !important;}
+    video{height:440px; width:770px;}
+    </style>
+
+</head>
+
+<body id="page-top" style="width:1016px;">
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-light" id="mainNav" style="width:1016px;">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top" style="color:#000;font-size:26px;">Televix</a>
+            <div class="collapse navbar-collapse"  style="color:#000;font-size:24px;" id="navbarmenu">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="livetv">Live TV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="movies">Movies</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse"  style="color:#000;" id="downloadmenu">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="download">Download our Mobile Apps</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse"  style="color:#000;" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#logout" onclick="playmovie('WEO TV');">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div id="video_content">
+                    
+                </div>    
+            </div>
+        </div>
+        
+    </section>
+
+    
+
+    
+
+    
+ 
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    
+     <script src="flowplayer-7.0.2/flowplayer.min.js"></script>
+    <script type="text/javascript">
+        function playmovie(name){
+          
+          var str='<div class="flowplayer"  data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-qualities="160p,260p,530p,800p" data-default-quality="260p" data-analytics="UA-27182341-1" data-key="$512206430871778"><video controls>';
+          str+='<source type="application/x-mpegURL" src="http://ravi:123456@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
+            $('#video_content').html(str);
+            $('.flowplayer').flowplayer();
+
+          //$('#movie-modal').modal('show');
+          
+
+          //open_windows("http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>");
+          
+        }
+        //
+    </script>
+</body>
+
+</html>

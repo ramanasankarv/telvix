@@ -169,8 +169,9 @@ $page="channel";
         }
         function playmovie(name){
           
-          var str='<div class="flowplayer" data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-qualities="160p,260p,530p,800p" data-default-quality="260p" data-analytics="UA-27182341-1" data-key="$512206430871778"><video autoplay>';
+          var str='<div class="flowplayer"  data-swf="flowplayer-7.0.2/flowplayerhls.swf" data-qualities="160p,260p,530p,800p" data-default-quality="260p" data-analytics="UA-27182341-1" data-key="$512206430871778"><video controls>';
           str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
+          alert(str);
             $('#video_content').html(str);
             $('.flowplayer').flowplayer();
 
