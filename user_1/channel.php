@@ -52,6 +52,7 @@ $page="channel";
 .flowplayer .fp-color-play {
   fill: #eee;
 }
+#menumovies h1,#menulive h1{font-size:24px !important;}
     </style>
   </head>
   <body>
@@ -63,7 +64,7 @@ $page="channel";
 
         </div>
         <br>
-        <div class="col-md-9">
+        <div class="col-md-9" style="width: 100%;">
          	<div class="row">
             	<div class="content-box-large">
               		
