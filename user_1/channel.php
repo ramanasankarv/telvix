@@ -58,13 +58,21 @@ $page="channel";
   <body>
     <?php include('includes/header.php');?>
     <div class="page-content">
-      <div class="row">
+      <div class="row" >
+        <div style="float:left;width: 768px;">
         <h3></h3>
-        <div id="video_content">
+        <div id="video_content" >
 
         </div>
+        </div>
+        <div style="float:left;padding-left:30px;width: 250px;" >
+        <h4 style="padding-top: 20px;">Related Channels</h4>
+        <div id="related">
+        
+        </div>
+        </div>
         <br>
-        <div class="col-md-9" style="width: 100%;">
+        <div style="clear: both; width: 100%; margin-top: 20px;" class="col-md-9">
          	<div class="row">
             	<div class="content-box-large">
               		
@@ -81,7 +89,7 @@ $page="channel";
           		</div>
           	</div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9"  style="width: 100%;">
            	<div class="row" id="videos">
 			  		</div>
           
@@ -163,16 +171,32 @@ $page="channel";
           $.get("api.php?page=channel&category="+cat, function(data) {
             var obj = $.parseJSON(data);
             var str="";
+            var realted="";
             for(var i=0;i<obj.length;i++){
               console.log(obj[i]);
-              str+='<div class="col-md-4 panel-warning"><div class="content-box-header panel-heading"><div class="panel-title ">';
+              str+='<div class="col-md-3 panel-warning"><div class="content-box-header panel-heading"><div class="panel-title ">';
               str+=obj[i]["name"]+'</div></div>';
               str+='<div class="content-box-large box-with-header"><a href="javascript:void(0);" id="'+i+'channel" onclick="playmovie(\''+obj[i]["name"]+'\')">';
               str+='<img src="'+obj[i]["image"]+'" style="width:100%;"></a></div></div>';
+              if(i>=1) {
+                realted+='<div class="panel-warning"><div class="content-box-header panel-heading"><div class="panel-title ">';
+                realted+=obj[i]["name"]+'</div></div>';
+                realted+='<div class="content-box-large box-with-header"><a href="javascript:void(0);" id="'+i+'channel" onclick="playmovie(\''+obj[i]["name"]+'\')">';
+                realted+='<img src="'+obj[i]["image"]+'" style="width:100%;"></a></div></div>';
+              }
                 
             }
             $("#videos").html(str);
             $("#0channel").click();
+            if(realted!=""){
+              $("h4").show();
+              $("#related").show();
+              $("#related").html(realted); 
+            }
+            else{
+              $("h4").hide();
+              $("#related").hide();
+            }
            //getList(); 
             
         }).fail(function() { alert('Unable to save data, please try again later.'); });
@@ -183,7 +207,10 @@ $page="channel";
           str+='<source type="application/x-mpegURL" src="http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/'+name+':muxer=flv"></video></div>';
             $('h3').html(name);
             $('#video_content').html(str);
-            $('.flowplayer').flowplayer();
+            $('.flowplayer').flowplayer({screen: {
+        width: 768,
+        height: 432
+    }});
 
          // $('#movie-modal').modal('show');
           

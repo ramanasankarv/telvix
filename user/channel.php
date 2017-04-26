@@ -40,7 +40,7 @@ $page="channel";
     
 }
 .flowplayer {
-  /*background-color: #00abcd;*/
+  background-color: #00abcd;
 }
 .flowplayer .fp-color-play {
   fill: #eee;
@@ -62,7 +62,14 @@ $page="channel";
 
               		</div>
               		<div class="panel-body">
-                  
+                    <div data-live="true" data-ratio="0.5625" class="flowplayer">
+ 
+   <video data-title="Live stream">
+<source type="application/x-mpegurl"
+        src="http://5.9.101.139:8000/TRT1HD.m3u8?u=ravi:p=123456">
+   </video>
+ 
+</div>
                 		<div class="">
                 			<label for="add-mobile" class="col-sm-1 control-label">Category</label>
                 			<div class="col-sm-2">
@@ -113,9 +120,12 @@ $page="channel";
     <script src="../js/custom.js"></script>
 
     
-
+<!-- Flowplayer library -->
+<script src="//releases.flowplayer.org/7.0.3/flowplayer.min.js"></script>
+<!-- Flowplayer hlsjs engine -->
+<script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
     
-    <script src="flowplayer-7.0.2/flowplayer.min.js"></script>
+    
     
     <script type="text/javascript" language="javascript" class="init">
     var movies_count=1;
