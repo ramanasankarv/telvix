@@ -1,26 +1,41 @@
 <?php
-$client_id = '3623fdcfd074495ebca2e0d5f8a8166f';
-$client_secret = 'd41db934d2e644a9b2de5c767f4f17de';
-$redirect_uri = 'http://snapshotadmin.havasstaging.com/article/testing_insta/';
-$apiData = array(
-    'client_id' => $client_id,
-    'client_secret' => $client_secret,        
-    'aspect' => "media",
-    'object' => "tag",
-    'object_id' => "tattoo",
-    'callback_url' => $redirect_uri
-);
+function timezoneDoesDST($tzId) {
+    $tz = new DateTimeZone($tzId);
+    echo "<pre>";
+    //$date= DateTime('2017-10-27 01:45:00');
+    $time = strtotime('2016-09-16 01:45:00'. ' UTC');
+    $startdstArray=$tz->getTransitions($time );
+    $isdst=$startdstArray[0]['isdst'];
 
-$apiHost = 'https://api.instagram.com/v1/subscriptions/';
+    $time = strtotime('2016-10-16 01:45:00'. ' UTC');
+    $startdstArray1=$tz->getTransitions($time );
+    $isdst1=$startdstArray1[0]['isdst'];
+    if($isdst1==$isdst){
+    	echo "same time";
+    }else{
+    	echo $startdstArray[0]['offset'] - $startdstArray1[0]['offset'];
+    	echo " Not same";
+    }
+    print_r($tz->getTransitions($time ));
+}
+//timezoneDoesDST('Australia/Sydney');
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $apiHost);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($apiData));
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-$jsonData = curl_exec($ch);
-curl_close($ch);
-var_dump($jsonData);
+$temp = new Datetime('2018-10-16 01:45:00');
+$temp->modify('-100 sec');
+$date = $temp->format('Y-m-d H:i:s');
+echo $date;
 
+// $dateStr = '2018-10-16 01:45:00';
+// $timezone = 'Australia/Sydney';
+// $dtUtcDate = strtotime($dateStr. ' '. $timezone);
+
+//  //$time = strtotime('2018-10-16 01:45:00');
+
+
+
+// //$date = new DateTime($time, new DateTimeZone('UTC'));
+
+
+// //$isDST = date("I", $time);
+// print_r($dtUtcDate);
 ?>
