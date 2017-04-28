@@ -42,7 +42,7 @@
  
    <video data-title="Live stream">
 <source type="application/x-mpegurl"
-        src="http://5.9.101.139:8000/WEO TV.m3u8?u=ravi:p=123456">
+        src="http://trtcanlitv-lh.akamaihd.net/i/TRT1HD_1@181842/master.m3u8">
    </video>
  
 </div>
