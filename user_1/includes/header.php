@@ -20,7 +20,7 @@ else{
            <div class="col-md-3">
               <!-- Logo -->
               <div class="logo">
-                  <h1><a href="index.php">Telvix TV</a></h1>
+                  <h1><a href="channel.php">Telvix TV</a></h1>
                  
               </div>
            </div>
@@ -32,7 +32,7 @@ else{
           </div>
           <div class="col-md-2">
               <div class="logo menudiv" id="menumovies">             
-                    <h1><a href="channel.php">Movies</a></h1>
+                    <h1><a href="movies.php">Movies</a></h1>
               </div>
                   
           </div>

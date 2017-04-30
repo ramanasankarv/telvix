@@ -1,51 +1,34 @@
-
-<!doctype html>
-
+<!DOCTYPE html>
 <html>
-
-<head>
-   <meta charset="utf-8">
-
-      <title>Flowplayer · Live stream</title>
-   
-   <!-- optimize mobile versions -->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-      <!-- Flowplayer skin -->
-   <link rel="stylesheet" href="//releases.flowplayer.org/7.0.3/skin/skin.css">
-   
-   
-   
-<style>
-.flowplayer {
-  background-color: #00abcd;
+  <head>
+    <meta charset="utf-8">
+    <title>HLS Demo</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
+    <style type="text/css">
+      body {
+  max-width: 1024px;
 }
-.flowplayer .fp-color-play {
-  fill: #eee;
-}
-</style>
-<script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <!-- Flowplayer library -->
-<script src="//releases.flowplayer.org/7.0.3/flowplayer.min.js"></script>
-<!-- Flowplayer hlsjs engine -->
-<script src="//releases.flowplayer.org/hlsjs/flowplayer.hlsjs.min.js"></script>
-   
-               
-   
+    </style>
+  </head>
+  <body>
+    <video preload="none" id="player" autoplay controls crossorigin></video>
+    <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+  </body>
+  <script type="text/javascript">
+    (function () {
+  var video = document.querySelector('#player');
 
-</head>
-
-<body>
-
-   <div data-live="true" data-ratio="0.5625" class="flowplayer">
- 
-   <video data-title="Live stream">
-<source type="application/x-mpegurl"
-        src="http://5.9.101.139:8000/WEOTV.m3u8?u=test:p=123456">
-   </video>
- 
-</div>
-
-</body>
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource('http://5.9.101.139:8000/TRT1HD.m3u8?u=test:p=123456');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+    });
+  }
+  
+  plyr.setup(video);
+})();
+  </script>
 </html>

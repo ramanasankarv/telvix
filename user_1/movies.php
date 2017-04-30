@@ -40,6 +40,7 @@ $page="channel";
 
     
 }
+#related .panel-warning{width:141px;}
 #channelul li{float:left;list-style: none;padding:5px; color:#000;font-size:15px;}
 #channelul li a{color:#000;}
 #channelul li a.active{color:#f05f40;}
@@ -148,7 +149,7 @@ $page="channel";
 
         
 
-        $.get("api.php?page=category_channel", function(data) {
+        $.get("api.php?page=category_list", function(data) {
             var obj = $.parseJSON(data);
             var str="<ul id='channelul'>";
             var temp="";
@@ -183,7 +184,7 @@ $page="channel";
           //var cat=$("#category").val();
           $("li a.active").removeClass("active");
           $("#"+cat).addClass("active");
-          $.get("api.php?page=channel&category="+cat, function(data) {
+          $.get("api.php?page=movies&category="+cat, function(data) {
             var obj = $.parseJSON(data);
             var str="";
             var realted="";
@@ -233,7 +234,7 @@ $page="channel";
           //open_windows("http://5.9.101.139:8000/"+name+".m3u8?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>");
 
             var parameters = {
-              src: "http://<?php echo $_SESSION["playeruser"];?>:<?php echo $_SESSION["playerpassword"];?>@5.9.101.139:8000/"+name+".m3u8",
+              src: "http://5.9.101.139:8000/"+name+"?u=<?php echo $_SESSION["playeruser"];?>:p=<?php echo $_SESSION["playerpassword"];?>",
               autoPlay: true,
               verbose: true,
               controlBarAutoHide: true,
