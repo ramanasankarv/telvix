@@ -85,7 +85,7 @@ $page="channel";
               		<div class="panel-body">
                   
                 		<div class="">
-                			<div class="col-sm-10" id="channels">
+                			<div class="col-sm-10" id="channels"  style="padding-left: 0px;">
 
                     			
                 			</div>
@@ -155,7 +155,7 @@ $page="channel";
 
         $.get("api.php?page=category_channel", function(data) {
             var obj = $.parseJSON(data);
-            var str="<ul id='channelul'>";
+            var str="<img src='tv_icon.png' style='float: left;'><ul id='channelul' style='margin-top: 13px; margin-left: 20px;'>";
             var temp="";
             for(var i=0;i<obj.length;i++){
               console.log(obj[i]);
