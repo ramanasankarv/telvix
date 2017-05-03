@@ -24,7 +24,7 @@ else{
                  
               </div>
            </div>
-           <div class="col-md-1">
+           <div style="float: left;">
               <div class="logo menudiv" id="menulive">             
                     <h1><a href="channel.php">Live TV</a></h1>
               </div>

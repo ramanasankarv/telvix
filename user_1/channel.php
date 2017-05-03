@@ -29,6 +29,9 @@ $page="channel";
     <![endif]-->
     <script type="text/javascript" src="plugin/swfobject.js"></script>
     <style type="text/css">
+    body{margin: auto !important;
+    max-width: 1145px !important;}
+    .header{max-width: 1145px !important;}
       .modal { position: fixed; top:20%; }
       .modal-dialog{width:35%;margin:auto;}
       .modal-content {
@@ -43,12 +46,12 @@ $page="channel";
 #channelul li{float:left;list-style: none;padding:5px; color:#000;font-size:15px;}
 #channelul li a{color:#000;}
 #channelul li a.active{color:#f05f40;}
-#video_content{height: 432px;
-  width: 768px;}
+#video_content{height: 492px;
+  width: 875px;}
 .flowplayer {
   /*background-color: #00abcd;*/
-  height: 432px;
-  width: 768px;
+  height: 492px;
+  width: 875px;
 }
 .flowplayer .fp-color-play {
   fill: #eee;
@@ -60,13 +63,15 @@ $page="channel";
     <?php include('includes/header.php');?>
     <div class="page-content">
       <div class="row" >
-        <div style="float:left;width: 768px;">
+        <div style="float:left;width: 875px;">
         <h3></h3>
         <div id="video_content" >
-        <video width="768" height="432" autoplay id="player" controls></video>
+        <video width="875" height="492" autoplay id="player" controls></video>
         </div>
+        <br>
+        <img src="add.png" style="width: 875px; padding-top: 25px;">
         </div>
-        <div style="float:left;padding-left:30px;width: 250px;" >
+        <div style="float:right;padding-right:30px;width: 250px;" >
         <h4 style="padding-top: 20px;">Related Channels</h4>
         <div id="related">
         
@@ -193,7 +198,7 @@ $page="channel";
               str+=obj[i]["name"]+'</div></div>';
               str+='<div class="content-box-large box-with-header"><a href="javascript:void(0);" id="'+i+'channel" onclick="playmovie(\''+obj[i]["name"]+'\')">';
               str+='<img src="'+obj[i]["image"]+'" style="width:100%;"></a></div></div>';
-              if(i>=1) {
+              if(i>=1 && i<=3) {
                 realted+='<div class="panel-warning"><div class="content-box-header panel-heading"><div class="panel-title ">';
                 realted+=obj[i]["name"]+'</div></div>';
                 realted+='<div class="content-box-large box-with-header"><a href="javascript:void(0);" id="'+i+'channel" onclick="playmovie(\''+obj[i]["name"]+'\')">';
@@ -259,8 +264,8 @@ $page="channel";
             swfobject.embedSWF(
               "plugin/GrindPlayer.swf",
               "player",
-              768,
-              432,
+              875,
+              492,
               "10.1.0",
               "expressInstall.swf",
               parameters,
