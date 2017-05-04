@@ -29,9 +29,8 @@ $page="channel";
     <![endif]-->
     <script type="text/javascript" src="plugin/swfobject.js"></script>
     <style type="text/css">
-    body{margin: auto !important;
-    max-width: 1145px !important;}
-    .header{max-width: 1145px !important;}
+    
+    .header .container{margin: auto; max-width: 1145px; padding: 0px;}
       .modal { position: fixed; top:20%; }
       .modal-dialog{width:35%;margin:auto;}
       .modal-content {
@@ -61,7 +60,7 @@ $page="channel";
   </head>
   <body>
     <?php include('includes/header.php');?>
-    <div class="page-content">
+    <div class="page-content" style="max-width: 1145px; margin: auto;">
       <div class="row" >
         <div style="float:left;width: 875px;">
         <h3></h3>
