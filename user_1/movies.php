@@ -69,7 +69,28 @@ $page="channel";
         <video width="875" height="492" autoplay id="player" controls></video>
         </div>
         <br>
-        <img src="add.png" style="width: 875px; padding-top: 25px;">
+        <script type="text/javascript">
+sa_client = "de1a9e4ce1b54949e8871899b2bc3685";
+sa_code = "4e3ead44ff7dd42a7f40d1faadacc595";
+sa_protocol = ("https:"==document.location.protocol)?"https":"http";
+sa_pline = "0";
+sa_maxads = "3";
+sa_bgcolor = "FFFFFF";
+sa_bordercolor = "BDD631";
+sa_superbordercolor = "BDD631";
+sa_linkcolor = "001EB5";
+sa_desccolor = "000000";
+sa_urlcolor = "788300";
+sa_b = "0";
+sa_format = "banner_728x60";
+sa_width = "728";
+sa_height = "60";
+sa_location = "0";
+sa_radius = "0";
+sa_borderwidth = "1";
+sa_font = "0";
+</script>
+<script type="text/javascript" src="//sa.entireweb.com/sense2.js"></script>
         </div>
         <div style="float:right;padding-right:30px;width: 250px;" >
         <h4 style="padding-top: 20px;">Related Channels</h4>
